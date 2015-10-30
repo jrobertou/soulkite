@@ -1,0 +1,392 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Limo - HTML5 E-Commerce Template
+    // SEO Meta Tags
+    meta(name='description', content='Responsive HTML5 E-Commerce Template')
+    meta(name='keywords', content='responsive html5 template, e-commerce, shop, bootstrap 3.0, css, jquery, flat, modern')
+    meta(name='author', content='8Guild')
+    // Mobile Specific Meta Tag
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    // Favicon
+    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+    link(rel='icon', href='favicon.ico', type='image/x-icon')
+    // Master Slider Styles
+    link(href='themes/basic/masterslider/style/masterslider.css', rel='stylesheet', media='screen')
+    // Styles
+    link(href='themes/basic/css/styles.css', rel='stylesheet', media='screen')
+    // Modernizr
+    script(src='themes/basic/js/libs/modernizr.custom.js')
+    // Adding Media Queries Support for IE8
+    //if lt IE 9
+      script(src='themes/basic/js/plugins/respond.js')
+  // Body
+  body
+    // Login Modal
+    #loginModal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true')
+              i.fa.fa-times
+            h2
+              | Login or
+              a(href='register.html') Register
+            p.large Use social accounts
+            .social-login
+              a.facebook(href='#')
+                i.fa.fa-facebook-square
+              a.google(href='#')
+                i.fa.fa-google-plus-square
+              a.twitter(href='#')
+                i.fa.fa-twitter-square
+          .modal-body
+            form.login-form
+              .form-group.group
+                label(for='log-email') Email
+                input#log-email.form-control(type='email', name='log-email', placeholder='Enter your email', required='')
+                a.help-link(href='#') Forgot email?
+              .form-group.group
+                label(for='log-password') Password
+                input#log-password.form-control(type='text', name='log-password', placeholder='Enter your password', required='')
+                a.help-link(href='#') Forgot password?
+              .checkbox
+                label
+                  input(type='checkbox', name='remember')
+                  |  Remember me
+              input.btn.btn-black(type='submit', value='Login')
+        // /.modal-content
+      // /.modal-dialog
+    // /.modal
+    // Header
+    header(data-offset-top='500', data-stuck='600')
+      // data-offset-top is when header converts to small variant and data-stuck when it becomes visible. Values in px represent position of scroll from top. Make sure there is at least 100px between those two values for smooth animation
+      // Search Form
+      form.search-form.closed(method='get', role='form', autocomplete='off')
+        .container
+          .close-search
+            i.icon-delete
+          .form-group
+            label.sr-only(for='search-hd') Search for product
+            input#search-hd.form-control(type='text', name='search-hd', placeholder='Search for product')
+            button(type='submit')
+              i.icon-magnifier
+      // Mobile Menu Toggle
+      .menu-toggle
+        i.fa.fa-list
+      .container
+        h1.logo SoulKite
+        //a.logo(href='index.html')
+          img(src='themes/basic/img/logo-scheme4.png', alt='Limo')
+      // Main Menu
+      nav.menu
+        .container
+          ul.main
+            li
+              a(href='index.html')
+                span H
+                | ome
+            li.has-submenu
+              a(href='shop-filters-left-3cols.html')
+                span S
+                | hop
+                i.fa.fa-chevron-down
+              ul.submenu
+                li
+                  a(href='shop-filters-left-3cols.html') Shop - Filters Left 3 Cols
+                li
+                  a(href='shop-filters-left-2cols.html') Shop - Filters Left 2 Cols
+                li
+                  a(href='shop-filters-right-3cols.html') Shop - Filters Right 3 Cols
+                li
+                  a(href='shop-filters-right-2cols.html') Shop - Filters Right 2 Cols
+                li
+                  a(href='shop-no-filters-4cols.html') Shop - No Filters 4 Cols
+                li
+                  a(href='shop-no-filters-3cols.html') Shop - No Filters 3 Cols
+                li
+                  a(href='shop-single-item-v1.html') Shop - Single Item Vers 1
+                li
+                  a(href='shop-single-item-v2.html') Shop - Single Item Vers 2
+                li
+                  a(href='shopping-cart.html') Shopping Cart
+                li
+                  a(href='checkout.html') Checkout Page
+                //li
+                  a(href='wishlist.html') Wishlist
+            li.has-submenu
+              a(href='blog-sidebar-right.html')
+                span N
+                | ews
+                i.fa.fa-chevron-down
+              ul.submenu
+                li
+                  a(href='blog-sidebar-left.html') News - Sidebar Left
+                li
+                  a(href='blog-sidebar-right.html') News - Sidebar Right
+                li
+                  a(href='blog-single.html') News - Single Post
+            li.has-submenu
+              a(href='#')
+                span M
+                | ore
+                i.fa.fa-chevron-down
+              ul.submenu
+                li
+                  a(href='support.html') Contacts Us
+                li
+                  a(href='about.html') About Us
+                li
+                  a(href='register.html') FAQ's
+                li
+                  a(href='register.html') Login / Registration
+        .catalog-block
+          .container
+            ul.catalog
+              li.has-submenu
+                a(href='shop-filters-left-3cols.html')
+                  | Kitesurfing
+                  i.fa.fa-chevron-down
+                ul.submenu
+                  li
+                    a(href='#') Lessons
+                  li
+                    a(href='#') Rental
+                  li
+                    a(href='#') Vouchers
+                  li.has-submenu
+                    a(href='#') Shop
+                    // Class "has-submenu" for adding carret and dropdown
+                    ul.sub-submenu
+                      li
+                        a(href='#') Packs
+                      li
+                        a(href='#') Kites
+                      li
+                        a(href='#') Boards
+                      li
+                        a(href='#') Specials
+                      li
+                        a(href='#') Others
+                  li.offer
+                    .col-1
+                      p.p-style2
+                        | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
+                    .col-2
+                      img(src='themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      a.btn.btn-black(href='#')
+                        span 2 584$
+                        | Beginner Park, Special offer
+              li.has-submenu
+                a(href='shop-filters-left-3cols.html')
+                  | Stand Up Paddle Board
+                  i.fa.fa-chevron-down
+                ul.submenu
+                  li
+                    a(href='#') Lessons
+                  li
+                    a(href='#') Rental
+                  li
+                    a(href='#') Yoga & Fitness
+                  li
+                    a(href='#') Vouchers
+                  li.has-submenu
+                    a(href='#') Shop
+                    // Class "has-submenu" for adding carret and dropdown
+                    ul.sub-submenu
+                      li
+                        a(href='#') Packs
+                      li
+                        a(href='#') Boards
+                      li
+                        a(href='#') Paddles
+                      li
+                        a(href='#') Specials
+                      li
+                        a(href='#') Others
+                  li.offer
+                    .col-1
+                      p.p-style2
+                        | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
+                    .col-2
+                      img(src='themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      a.btn.btn-black(href='#')
+                        span 2 584$
+                        | Beginner Park, Special offer
+              li
+                a(href='shop-filters-left-3cols.html') Spots & Weather
+              li
+                a(href='shop-filters-left-3cols.html') Gallery
+
+      .toolbar-container
+        .container
+          // Toolbar
+          .toolbar.group
+            a.login-btn.btn-outlined-invert(href='#', data-toggle='modal', data-target='#loginModal')
+              i.icon-profile
+              span
+                b L
+                | ogin
+            //a.btn-outlined-invert(href='wishlist.html')
+              i.icon-heart
+              span
+                b W
+                | ishlist
+            include templates/cart-dropdown
+            button.search-btn.btn-outlined-invert
+              i.icon-magnifier
+          // Toolbar Close
+    // Header Close
+
+    // Page Content
+    .page-content
+      block content
+
+      // Brands Carousel Widget
+      section.brand-carousel
+        .container
+          h2 Brands in our shop
+          .inner
+            a.item(href='#')
+              img(src='themes/basic/img/brands/xenon.png', alt='Xenon board logo')
+            a.item(href='#')
+              img(src='themes/basic/img/brands/fone.png', alt='FOne kiteboarding logo')
+            a.item(href='#')
+              img(src='themes/basic/img/brands/mystic.png', alt='Mystic logo')
+            a.item(href='#')
+              img(src='themes/basic/img/brands/manera.jpg', alt='Manera')
+            a.item(href='#')
+              img(src='themes/basic/img/brands/best.png', alt='Best kiteboarding logo')
+            a.item(href='#')
+              img(src='themes/basic/img/brands/honu.png', alt='Honu')
+      // Brands Carousel Close
+    // Page Content Close
+
+    // Sticky Buttons
+    .sticky-btns
+      form.quick-contact.ajax-form(method='post', name='quick-contact')
+        h3 Contact us
+        p.text-muted Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.
+        .form-group
+          label(for='qc-name') Full name
+          input#qc-name.form-control.input-sm(type='text', name='name', placeholder='Enter full name')
+        .form-group
+          label(for='qc-email') Email
+          input#qc-email.form-control.input-sm(type='email', name='email', placeholder='Enter email')
+        .form-group
+          label(for='qc-message') Your message
+          textarea#qc-message.form-control.input-sm(name='message', placeholder='Enter your message')
+        // Validation Response
+        .response-holder
+        // Response End
+        input.btn.btn-black.btn-sm.btn-block(type='submit', value='Send')
+      span#qcf-btn
+        i.fa.fa-envelope
+      span#scrollTop-btn
+        i.fa.fa-chevron-up
+    // Sticky Buttons Close
+    // Subscription Widget
+    section.subscr-widget.gray-bg
+      .container
+        .row
+          .col-lg-7.col-md-8.col-sm-8
+            h2 Subscribe to our news
+            form.subscr-form(role='form', autocomplete='off')
+              .form-group
+                label.sr-only(for='subscr-name') Enter name
+                input#subscr-name.form-control(type='text', name='subscr-name', placeholder='Enter name', required='')
+                button.subscr-next
+                  i.icon-arrow-right
+              .form-group.fff(style='display: none')
+                label.sr-only(for='subscr-email') Enter email
+                input#subscr-email.form-control(type='email', name='subscr-email', placeholder='Enter email', required='')
+                button#subscr-submit(type='submit')
+                  i.icon-check
+            p.p-style2 Please fill the field before continuing
+          .col-lg-4.col-md-4.col-sm-4.col-lg-offset-1
+            p.p-style3
+              | Get more followers. In case of high quality newsletters the customers return rate can increase up to 20%! Have you already estimated your possible income? We took that into account and created a decent subscription form.
+    // Subscription Widget Close
+    // Footer
+    footer.footer
+      .container
+        .row
+          .col-lg-5.col-md-5.col-sm-5
+            .info
+              h2 KiteSoul Australia
+              //a.logo(href='index.html')
+                img(src='themes/basic/img/logo-footer.png', alt='Limo')
+              p
+                | SoulKite is a kitesurfing school based in Fremantle near Perth, Western Australia.
+                br
+                | We offer kitesurfing and stand up paddeling lessons near Perth for beginner, intermediate and advanced riders.
+              .social
+                a(href='#', target='_blank')
+                  i.fa.fa-instagram
+                a(href='#', target='_blank')
+                  i.fa.fa-youtube-square
+                a(href='#', target='_blank')
+                  i.fa.fa-tumblr-square
+                a(href='#', target='_blank')
+                  i.fa.fa-vimeo-square
+                a(href='#', target='_blank')
+                  i.fa.fa-pinterest-square
+                a(href='#', target='_blank')
+                  i.fa.fa-facebook-square
+          .col-lg-4.col-md-4.col-sm-4
+            h2 Latest news
+            ul.list-unstyled
+              li
+                | 25 of May&nbsp;
+                a(href='#') Review, Best Cabo 2016
+              li
+                | 24 of April&nbsp;
+                a(href='#') Review, Fone Bandit 2016
+              li
+                | 25 of May&nbsp;
+                a(href='#') Freestyle's tips
+          .contacts.col-lg-3.col-md-3.col-sm-3
+            h2 Contacts
+            p.p-style3
+              |               SoulKite
+              br
+              |               Fremantle, Western Australia
+              br
+              a(href='mailto:info@soulkiteaustralia.com') info@soulkiteaustralia.com
+              br
+              |               + 0413 275 058
+              br
+        .copyright
+          .row
+            .col-lg-7.col-md-7.col-sm-7
+              p
+                | © 2014 Limo. All Rights Reserved. Designed by
+                a(href='http://8guild.com/', target='_blank') 8Guild
+            .col-lg-5.col-md-5.col-sm-5
+              .payment
+                img(src='themes/basic/img/payment/visa.png', alt='Visa')
+                img(src='themes/basic/img/payment/paypal.png', alt='PayPal')
+                img(src='themes/basic/img/payment/master.png', alt='Master Card')
+                img(src='themes/basic/img/payment/discover.png', alt='Discover')
+                img(src='themes/basic/img/payment/amazon.png', alt='Amazon')
+    // Footer Close
+    // Javascript (jQuery) Libraries and Plugins
+    script(src='themes/basic/js/libs/jquery-1.11.1.min.js')
+    script(src='themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js')
+    script(src='themes/basic/js/libs/jquery.easing.min.js')
+    script(src='themes/basic/js/plugins/bootstrap.min.js')
+    script(src='themes/basic/js/plugins/smoothscroll.js')
+    script(src='themes/basic/js/plugins/jquery.validate.min.js')
+    script(src='themes/basic/js/plugins/icheck.min.js')
+    script(src='themes/basic/js/plugins/jquery.placeholder.js')
+    script(src='themes/basic/js/plugins/jquery.stellar.min.js')
+    script(src='themes/basic/js/plugins/jquery.touchSwipe.min.js')
+    script(src='themes/basic/js/plugins/jquery.shuffle.min.js')
+    script(src='themes/basic/js/plugins/lightGallery.min.js')
+    script(src='themes/basic/js/plugins/owl.carousel.min.js')
+    script(src='themes/basic/js/plugins/masterslider.min.js')
+    script(src='themes/basic/js/scripts.js')
+    script(src='themes/common/js/common.js')
+    script(src='themes/common/js/helper-forms.js')
+  // Body Close

@@ -1,0 +1,48 @@
+.cart-btn
+  a.btn.btn-outlined-invert(href='shopping-cart.html')
+    i.icon-shopping-cart-content
+    if !cart
+      span 0
+      b #{__displayPrice(shop.currency, 3 590)}
+    else
+      span #{cart.products.length}
+      b #{__displayPrice(shop.currency, cart.total)}
+
+  // Cart Dropdown
+  .cart-dropdown
+    span
+    // Small rectangle to overlap Cart button
+    .body
+      table
+        tr
+          th Items
+          th Quantity
+          th Price
+        if cart
+          each product, key in cart.products
+            link = "/product/"+product.slug
+            url = product.thumbnail ? S3url+product.thumbnail : "http://placehold.it/240x220";
+          tr.item
+              td
+                .delete
+                a(href=link) product.name
+                  each v in product.variant.data
+                    | #{v.name}: #{v.value}
+                    br
+              td
+                input(type='text', value=product.quantity)
+              td.price #{__displayPrice(shop.currency, product.price*product.quantity)}
+    .footer.group
+      .buttons
+        a.btn.btn-outlined-invert(href='checkout.html')
+          i.icon-download
+          | Checkout
+        a.btn.btn-outlined-invert(href='shopping-cart.html')
+          i.icon-shopping-cart-content
+          | To cart
+
+      if !cart
+        .total #{__displayPrice(shop.currency, 3 590)}
+      else
+        .total #{__displayPrice(shop.currency, cart.total)}
+  // Cart Dropdown Close

@@ -20,6 +20,7 @@
     "gm": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-cssmin": "*",
+    "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-sass": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",

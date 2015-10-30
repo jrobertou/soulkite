@@ -25,7 +25,7 @@ module.exports = {
 
   // Add product to cart
   addProduct: function(req, res) {
-
+    console.log(req.body)
     var req_product = req.body.product;
     req_product.qty = parseInt(req_product.qty);
     var variant_id = req_product.variant_id;
@@ -36,7 +36,7 @@ module.exports = {
     /*if (typeof req_product.variants !== 'undefined') {
       var variant = _.uniq(req_product.variants);
       if (variant.length > 1) {
-        res.json({ 
+        res.json({
           success: false,
           message: "Impossible d'ajouter ce produit au panier."
         });
@@ -49,7 +49,7 @@ module.exports = {
         if (err) {console.log(err)}
 
         if (!variant_id) {
-          res.json({ 
+          res.json({
             success: false,
             //message: "Impossible d'ajouter ce produit au panier.",
             redirectUrl: "/product/"+product.slug+"?alert=choose_variant"
@@ -63,7 +63,7 @@ module.exports = {
         // Si la variante n'existe pas
         var variant_data_keys = Object.keys(product.variants.data);
         if (variant_data_keys.indexOf(variant_id) == -1) {
-          res.json({ 
+          res.json({
             success: false,
             message: "Impossible d'ajouter ce produit au panier."
           });
@@ -80,16 +80,16 @@ module.exports = {
           });
 
           if (!variant_id) {
-            res.json({ 
+            res.json({
               success: false,
               message: "Impossible d'ajouter ce produit au panier."
             });
             return;
           }
         }*/
-          
+
         // Initalise cart
-        if (!req.session.cart) { 
+        if (!req.session.cart) {
           req.session.cart = {
             products: {},
             count: 0,
@@ -97,7 +97,7 @@ module.exports = {
             total: 0
           };
         }
-        
+
         //var variant_id = variant_id ? variant_id : '';
         var product_uniq_key = product._id+'_'+variant_id;
 
@@ -118,7 +118,7 @@ module.exports = {
           else {
             variant = null;
           }
-        
+
           // Add product if not
           req.session.cart.products[product_uniq_key] = {
             id: product._id,
@@ -129,13 +129,13 @@ module.exports = {
             thumbnail: product && product.thumbnail ? product.thumbnail.s200.path : null,
             variant: variant
           };
-        
+
         } else {
-        
+
           // Increment count if already added
           req.session.cart.products[product_uniq_key].quantity += req_product.qty;
         }
-        
+
         // Total cart
         req.session.cart.count = 0;
         req.session.cart.subtotal = 0;
@@ -144,7 +144,7 @@ module.exports = {
           req.session.cart.subtotal = req.session.cart.subtotal + (product.price * product.quantity);
         });
         req.session.cart.total = req.session.cart.subtotal;
-        
+
         var shop = req.session.shop;
         var page = fn.shopViewsPath(shop.theme, 'cartmenu');
         res.render(page, { cart: req.session.cart, shop: shop }, function(err, html) {
@@ -156,53 +156,53 @@ module.exports = {
             html: html
           });
 
-        }); 
-      
+        });
+
       });
-    } 
+    }
     catch(err) {
       console.log(err);
-      res.json({ 
+      res.json({
         success: false,
         message: "Une erreur est survenue. Veuillez réessayer."
       });
     }
 
   },
-  
+
   // Remove product from cart
   removeProduct: function(req, res) {
-          
+
     // Check item count
     if (Object.keys(req.session.cart.products).indexOf(req.params.id) !== -1) {
-      // Remove product 
+      // Remove product
       delete req.session.cart.products[req.params.id];
 
       // Total cart
       recomputeTotals(req);
-      
+
       // Remove cart if empty
       if (req.session.cart.count === 0) {
         delete req.session.cart;
-      } 
-      
+      }
+
       res.json({ success: true });
     }
     else {
       res.json({ success: false });
     }
-    
+
   },
 
   // Remove product from cart
   updateProduct: function(req, res) {
-    
+
     var quantity = req.body.quantity;
 
     // Check item count
     if (Object.keys(req.session.cart.products).indexOf(req.params.id) !== -1) {
       if (quantity>0) {
-        // Update quantity 
+        // Update quantity
         req.session.cart.products[req.params.id].quantity = parseInt(quantity);
       }
       else {
@@ -211,7 +211,7 @@ module.exports = {
 
       // Total cart
       recomputeTotals(req);
-      
+
       res.json({ success: true });
     }
     else {

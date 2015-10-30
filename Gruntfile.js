@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
- 
+
   grunt.initConfig({
 
     // Metadata.
@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       //deployPath: 'public/css',
       //themesPath: 'server/views/shop/themes',
       //themesExportPath: 'public/themes',
-      
+
       css: 'public/css',
       commonCss: 'public/css/common',
       websiteCss: 'public/css/website',
@@ -59,6 +59,14 @@ module.exports = function(grunt) {
       marciano: {
         files: {
           '<%= meta.themesPath %>/_marciano/css/global.css': ['<%= meta.themesPath %>/_marciano/css/global.scss']
+        }
+      }
+    },
+
+    less:{
+      limo: {
+        files: {
+          "./public/themes/limo/styles.css": "./public/themes/limo/less/styles.less"
         }
       }
     },
@@ -194,7 +202,7 @@ module.exports = function(grunt) {
     }
 
   });
- 
+
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
@@ -202,10 +210,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-css');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // Default task.
   grunt.registerTask('dev', ['watch']);
   //grunt.registerTask('build', ['sass:build', 'sass:build4theme', 'concat', 'cssmin']);
+
+  grunt.registerTask('limo', ['less']);
 
   // CSS
   grunt.registerTask('build_css_website', ['sass:website', 'concat:website', 'cssmin:website']);

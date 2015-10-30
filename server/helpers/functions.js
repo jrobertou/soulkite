@@ -8,12 +8,12 @@ var config = require("../../config/app.json")
 var fn = {
 
   shopViewsPath: function(theme, viewname) {
-
+    return 'shop/themes/basic/'+viewname;
     if (config.themes.indexOf(theme) > -1) {
       return 'shop/themes/'+theme+'/'+viewname;
     }
     else {
-      return 'shop/themes/classic/'+viewname;
+      return 'shop/themes/basic/'+viewname;
     }
 
   },
