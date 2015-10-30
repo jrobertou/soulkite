@@ -3,7 +3,7 @@
     i.icon-shopping-cart-content
     if !cart
       span 0
-      b #{__displayPrice(shop.currency, 3 590)}
+      b #{__displayPrice(shop.currency, 3590)}
     else
       span #{cart.products.length}
       b #{__displayPrice(shop.currency, cart.total)}
@@ -42,7 +42,7 @@
           | To cart
 
       if !cart
-        .total #{__displayPrice(shop.currency, 3 590)}
+        .total #{__displayPrice(shop.currency, 3590)}
       else
         .total #{__displayPrice(shop.currency, cart.total)}
   // Cart Dropdown Close

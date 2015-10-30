@@ -13,14 +13,14 @@ html
     link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
     link(rel='icon', href='favicon.ico', type='image/x-icon')
     // Master Slider Styles
-    link(href='themes/basic/masterslider/style/masterslider.css', rel='stylesheet', media='screen')
+    link(href='/themes/basic/masterslider/style/masterslider.css', rel='stylesheet', media='screen')
     // Styles
-    link(href='themes/basic/css/styles.css', rel='stylesheet', media='screen')
+    link(href='/themes/basic/css/styles.css', rel='stylesheet', media='screen')
     // Modernizr
-    script(src='themes/basic/js/libs/modernizr.custom.js')
+    script(src='/themes/basic/js/libs/modernizr.custom.js')
     // Adding Media Queries Support for IE8
     //if lt IE 9
-      script(src='themes/basic/js/plugins/respond.js')
+      script(src='/themes/basic/js/plugins/respond.js')
   // Body
   body
     // Login Modal
@@ -78,13 +78,13 @@ html
       .container
         h1.logo SoulKite
         //a.logo(href='index.html')
-          img(src='themes/basic/img/logo-scheme4.png', alt='Limo')
+          img(src='/themes/basic/img/logo-scheme4.png', alt='Limo')
       // Main Menu
       nav.menu
         .container
           ul.main
             li
-              a(href='index.html')
+              a(href='/')
                 span H
                 | ome
             li.has-submenu
@@ -94,21 +94,9 @@ html
                 i.fa.fa-chevron-down
               ul.submenu
                 li
-                  a(href='shop-filters-left-3cols.html') Shop - Filters Left 3 Cols
+                  a(href='/category/kitesurfing') Kitesurfing
                 li
-                  a(href='shop-filters-left-2cols.html') Shop - Filters Left 2 Cols
-                li
-                  a(href='shop-filters-right-3cols.html') Shop - Filters Right 3 Cols
-                li
-                  a(href='shop-filters-right-2cols.html') Shop - Filters Right 2 Cols
-                li
-                  a(href='shop-no-filters-4cols.html') Shop - No Filters 4 Cols
-                li
-                  a(href='shop-no-filters-3cols.html') Shop - No Filters 3 Cols
-                li
-                  a(href='shop-single-item-v1.html') Shop - Single Item Vers 1
-                li
-                  a(href='shop-single-item-v2.html') Shop - Single Item Vers 2
+                  a(href='/category/stand-up-padde-board') Stand Up Padde Board
                 li
                   a(href='shopping-cart.html') Shopping Cart
                 li
@@ -174,7 +162,7 @@ html
                       p.p-style2
                         | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
                     .col-2
-                      img(src='themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
                       a.btn.btn-black(href='#')
                         span 2 584$
                         | Beginner Park, Special offer
@@ -210,7 +198,7 @@ html
                       p.p-style2
                         | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
                     .col-2
-                      img(src='themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
                       a.btn.btn-black(href='#')
                         span 2 584$
                         | Beginner Park, Special offer
@@ -249,17 +237,17 @@ html
           h2 Brands in our shop
           .inner
             a.item(href='#')
-              img(src='themes/basic/img/brands/xenon.png', alt='Xenon board logo')
+              img(src='/themes/basic/img/brands/xenon.png', alt='Xenon board logo')
             a.item(href='#')
-              img(src='themes/basic/img/brands/fone.png', alt='FOne kiteboarding logo')
+              img(src='/themes/basic/img/brands/fone.png', alt='FOne kiteboarding logo')
             a.item(href='#')
-              img(src='themes/basic/img/brands/mystic.png', alt='Mystic logo')
+              img(src='/themes/basic/img/brands/mystic.png', alt='Mystic logo')
             a.item(href='#')
-              img(src='themes/basic/img/brands/manera.jpg', alt='Manera')
+              img(src='/themes/basic/img/brands/manera.jpg', alt='Manera')
             a.item(href='#')
-              img(src='themes/basic/img/brands/best.png', alt='Best kiteboarding logo')
+              img(src='/themes/basic/img/brands/best.png', alt='Best kiteboarding logo')
             a.item(href='#')
-              img(src='themes/basic/img/brands/honu.png', alt='Honu')
+              img(src='/themes/basic/img/brands/honu.png', alt='Honu')
       // Brands Carousel Close
     // Page Content Close
 
@@ -316,7 +304,7 @@ html
             .info
               h2 KiteSoul Australia
               //a.logo(href='index.html')
-                img(src='themes/basic/img/logo-footer.png', alt='Limo')
+                img(src='/themes/basic/img/logo-footer.png', alt='Limo')
               p
                 | SoulKite is a kitesurfing school based in Fremantle near Perth, Western Australia.
                 br
@@ -365,28 +353,26 @@ html
                 a(href='http://8guild.com/', target='_blank') 8Guild
             .col-lg-5.col-md-5.col-sm-5
               .payment
-                img(src='themes/basic/img/payment/visa.png', alt='Visa')
-                img(src='themes/basic/img/payment/paypal.png', alt='PayPal')
-                img(src='themes/basic/img/payment/master.png', alt='Master Card')
-                img(src='themes/basic/img/payment/discover.png', alt='Discover')
-                img(src='themes/basic/img/payment/amazon.png', alt='Amazon')
+                img(src='/themes/basic/img/payment/visa.png', alt='Visa')
+                img(src='/themes/basic/img/payment/paypal.png', alt='PayPal')
+                img(src='/themes/basic/img/payment/master.png', alt='Master Card')
+                img(src='/themes/basic/img/payment/discover.png', alt='Discover')
+                img(src='/themes/basic/img/payment/amazon.png', alt='Amazon')
     // Footer Close
     // Javascript (jQuery) Libraries and Plugins
-    script(src='themes/basic/js/libs/jquery-1.11.1.min.js')
-    script(src='themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js')
-    script(src='themes/basic/js/libs/jquery.easing.min.js')
-    script(src='themes/basic/js/plugins/bootstrap.min.js')
-    script(src='themes/basic/js/plugins/smoothscroll.js')
-    script(src='themes/basic/js/plugins/jquery.validate.min.js')
-    script(src='themes/basic/js/plugins/icheck.min.js')
-    script(src='themes/basic/js/plugins/jquery.placeholder.js')
-    script(src='themes/basic/js/plugins/jquery.stellar.min.js')
-    script(src='themes/basic/js/plugins/jquery.touchSwipe.min.js')
-    script(src='themes/basic/js/plugins/jquery.shuffle.min.js')
-    script(src='themes/basic/js/plugins/lightGallery.min.js')
-    script(src='themes/basic/js/plugins/owl.carousel.min.js')
-    script(src='themes/basic/js/plugins/masterslider.min.js')
-    script(src='themes/basic/js/scripts.js')
-    script(src='themes/common/js/common.js')
-    script(src='themes/common/js/helper-forms.js')
+    script(src='/themes/basic/js/libs/jquery-1.11.1.min.js')
+    script(src='/themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js')
+    script(src='/themes/basic/js/libs/jquery.easing.min.js')
+    script(src='/themes/basic/js/plugins/bootstrap.min.js')
+    script(src='/themes/basic/js/plugins/smoothscroll.js')
+    script(src='/themes/basic/js/plugins/jquery.validate.min.js')
+    script(src='/themes/basic/js/plugins/icheck.min.js')
+    script(src='/themes/basic/js/plugins/jquery.placeholder.js')
+    script(src='/themes/basic/js/plugins/jquery.stellar.min.js')
+    script(src='/themes/basic/js/plugins/jquery.touchSwipe.min.js')
+    script(src='/themes/basic/js/plugins/jquery.shuffle.min.js')
+    script(src='/themes/basic/js/plugins/lightGallery.min.js')
+    script(src='/themes/basic/js/plugins/owl.carousel.min.js')
+    script(src='/themes/basic/js/plugins/masterslider.min.js')
+    script(src='/themes/basic/js/scripts.js')
   // Body Close

@@ -39,7 +39,7 @@ module.exports = {
 
           if (err) {console.log(err);}
 
-          var page = fn.shopViewsPath(shop.theme, 'category');
+          var page = fn.shopViewsPath(shop.theme, 'products-list');
 
           products_pages.current_url = current_url;
 

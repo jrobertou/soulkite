@@ -46,7 +46,7 @@ module.exports = {
 	      	}
 	        //req.query.alert
 
-					var page = fn.shopViewsPath(shop.theme, 'product');
+					var page = fn.shopViewsPath(shop.theme, 'product-single');
 
 					//console.log(JSON.stringify(req.session.cart))
 

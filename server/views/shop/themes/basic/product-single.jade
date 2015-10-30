@@ -1,0 +1,293 @@
+extends layout
+
+block content
+  // Breadcrumbs
+  ol.breadcrumb
+    li
+      a(href='index.html') Home
+    li
+      a(href='shop-filters-left-3cols.html') Shop - filters left 3 cols
+    li Shop - single item v1
+  // Breadcrumbs Close
+  // Shopping Cart Message
+  section.cart-message
+    i.fa.fa-check-square
+    p.p-style3 "Nikon" was successfully added to your cart.
+    a.btn-outlined-invert.btn-black.btn-sm(href='shopping-cart.html') View cart
+  // Shopping Cart Message Close
+  // Catalog Single Item
+  section.catalog-single
+    .container
+      .row
+        // Product Gallery
+        .col-lg-6.col-md-6
+          #prod-gal.prod-gal.master-slider
+            // Slide1
+            .ms-slide
+              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
+              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+            // Slide2
+            .ms-slide
+              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
+              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+            // Slide3
+            .ms-slide
+              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
+              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+            // Slide4
+            .ms-slide
+              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
+              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+            // Slide5
+            .ms-slide
+              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
+              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+        // Product Description
+        .col-lg-6.col-md-6
+          h1 Minaudière
+          .old-price 815,00 $
+          .price 715,00 $
+          .buttons.group
+            .qnt-count
+              a.incr-btn(href='#') -
+              input#quantity.form-control(type='text', value='2')
+              a.incr-btn(href='#') +
+            a#addItemToCart.btn.btn-primary.btn-sm(href='#')
+              i.icon-shopping-cart
+              | Add to cart
+            a.btn.btn-black.btn-sm(href='#')
+              i.icon-heart
+              | Add to wishlist
+          p.p-style2
+            | Product page was developed with the help of consultants with great and successful experience in e-commerce. It's all you need to effectively demonstrate your product. The opportunity to quickly buy a product or save it to a wishlist will definitely increase the conversion rate.
+          .row
+            .col-lg-4.col-md-4.col-sm-5
+              h3 Tell friends
+              .social-links
+                a(href='#')
+                  i.fa.fa-tumblr-square
+                a(href='#')
+                  i.fa.fa-pinterest-square
+                a(href='#')
+                  i.fa.fa-facebook-square
+            .col-lg-8.col-md-8.col-sm-7
+              h3 Tags
+              .tags
+                a(href='#') Backpack
+                | ,
+                a(href='#') Chanel
+                | ,
+                a(href='#') Wristlet
+          .promo-labels
+            div(data-content='This is a place for the unique commercial offer. Make it known.')
+              span
+                i.fa.fa-truck
+                | Free delivery
+            div(data-content='This is a place for the unique commercial offer. Make it known.')
+              i.fa.fa-space-shuttle
+              | Deliver even on Mars
+            div(data-content='This is a place for the unique commercial offer. Make it known.')
+              i.fa.fa-shield
+              | Safe Buy
+  // Catalog Single Item Close
+  // Tabs Widget
+  section.tabs-widget
+    // Nav tabs
+    ul.nav.nav-tabs
+      li.active
+        a(href='#specs', data-toggle='tab') Specs
+      li
+        a(href='#descr', data-toggle='tab') Description
+      li
+        a(href='#review', data-toggle='tab') Reviews
+    .tab-content
+      // Tab1 (Specs)
+      #specs.tab-pane.fade.in.active
+        .container
+          .row
+            section.tech-specs
+              .container
+                .row
+                  // Column 1
+                  .col-lg-6.col-md-6.col-sm-6
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-dollar
+                          span Best Price
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Affordable prices
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-umbrella
+                          span Materials
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Waterproof materials
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-sort-numeric-asc
+                          span City bags
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Any size
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-smile-o
+                          span Mentions
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Give a smile
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-recycle
+                          span Eco activity
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Eco-friendly materials
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-4
+                          i.fa.fa-archive
+                          span Package
+                        .col-lg-8.col-md-8.col-sm-8
+                          p.p-style2 Individual packing
+                  // Column 2
+                  .col-lg-6.col-md-6.col-sm-6
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-umbrella
+                          span Materials
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Waterproof materials
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-4
+                          i.fa.fa-archive
+                          span Package
+                        .col-lg-8.col-md-8.col-sm-8
+                          p.p-style2 Individual packing
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-smile-o
+                          span Mentions
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Give a smile
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-dollar
+                          span Best Price
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Affordable prices
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-recycle
+                          span Eco activity
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Eco-friendly materials
+                    // Item
+                    .item
+                      .row
+                        .col-lg-4.col-md-4.col-sm-3
+                          i.fa.fa-sort-numeric-asc
+                          span City bags
+                        .col-lg-8.col-md-8.col-sm-9
+                          p.p-style2 Any size
+                    // Item
+      // Tab2 (Description)
+      #descr.tab-pane.fade
+        .container
+          .row
+            .col-lg-4.col-md-5.col-sm-5
+              img.center-block(src='/themes/basic/img/posts-widget/1.jpg', alt='Description')
+            .col-lg-8.col-md-7.col-sm-7
+              p.p-style2
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+              .row
+                .col-lg-3.col-md-4.col-sm-5.col-xs-6
+                  h4 Unordered list
+                  ul
+                    li List item
+                    li
+                      a(href='#') List item link
+                    li List item
+                .col-lg-3.col-md-4.col-sm-5.col-xs-6
+                  h4 Ordered list
+                  ol
+                    li List item
+                    li
+                      a(href='#') List item link
+                    li List item
+      // Tab3 (Reviews)
+      #review.tab-pane.fade
+        .container
+          .row
+            // Disqus Comments Plugin
+            .col-lg-10.col-lg-offset-1
+              #disqus_thread
+              script(type='text/javascript').
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = '8guild'; // required: replace example with your forum shortname
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              noscript
+                | Please enable JavaScript to view the
+                a(href='http://disqus.com/?ref_noscript') comments powered by Disqus.
+              a.dsq-brlink(href='http://disqus.com')
+                | comments powered by
+                span.logo-disqus Disqus
+  // Tabs Widget Close
+  // Special Offer
+  section.special-offer
+    .container
+      h2 Special offer
+      .row
+        // Tile
+        .col-lg-3.col-md-3.col-sm-3
+          .tile
+            .price-label 715,00 $
+            a(href='#')
+              img(src='/themes/basic/img/offers/special-offer.png', alt='Special Offer')
+              span.tile-overlay
+            .footer
+              a(href='#') The Buccaneer
+        // Plus
+        .col-lg-1.col-md-1.col-sm-1
+          .sign +
+        // Tile
+        .col-lg-3.col-md-3.col-sm-3
+          .tile
+            .price-label 715,00 $
+            a(href='#')
+              img(src='/themes/basic/img/offers/special-offer.png', alt='Special Offer')
+              span.tile-overlay
+            .footer
+              a(href='#') The Buccaneer
+        // Equal
+        .col-lg-1.col-md-1.col-sm-1
+          .sign =
+        // Offer
+        .col-lg-4.col-md-4.col-sm-4
+          .offer
+            h3.light-color save
+            h4.text-primary 100,00 $
+            a.btn.btn-primary(href='#') Buy for 1200$
+  // Special Offer Close
