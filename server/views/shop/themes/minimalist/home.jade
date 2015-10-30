@@ -1,0 +1,23 @@
+extends layout
+block content
+  .row.apropos
+    .large-12.columns
+      h1 Produits
+  div.row
+    each product in products
+      div.large-3.columns
+        div.product-item
+          link = "/product/"+product.slug
+          url = typeof product.thumbnail !== "undefined" ? S3url+product.thumbnail.s200.path : "http://placehold.it/240x220";
+          a(href="#{link}").thumbnail
+            img(src=url, alt="")
+            div.overlay
+              div.price #{product.price} €
+
+          div.info
+            a(href="#{link}").thumbnail
+              h4 #{product.name}
+
+block scripts
+  
+  

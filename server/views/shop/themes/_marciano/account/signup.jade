@@ -1,0 +1,171 @@
+extend layout
+block subcontent
+	.col-md-9.col-sm-9
+		h1 Sign Up
+		.content-form-page
+			.row
+				.col-md-11.col-sm-11
+					url = checkoutProcess?"/signup?checkout=true":"/signup"
+					form.form-horizontal.form-without-legend(action="#{url}", method="post", role='form', data-type='classic-form')
+						.form-group
+							label.col-lg-4.control-label(for='customer[email]')
+								| Email
+								span.require *
+							.col-lg-8
+								input.form-control(type='text', name='customer[email]')
+						
+						.form-group
+							label.col-lg-4.control-label(for='customer[name][first]')
+								| First Name
+								span.require *
+							.col-lg-3
+								input.form-control(type='text', name='customer[name][first]')
+							label.col-lg-2.control-label(for='customer[name][last]')
+								| Last
+								span.require *
+							.col-lg-3
+								input.form-control(type='text', name='customer[name][last]')
+
+						.form-group
+							label.col-lg-4.control-label(for='customer[password]')
+								| Password
+								span.require *
+							.col-lg-3
+								input.form-control(type='password', name='customer[password]')
+							label.col-lg-2.control-label(for='customer[password2]')
+								| Reapeat
+								span.require *
+							.col-lg-3
+								input.form-control(type='password', name='customer[password2]')
+
+						.form-group
+							label.col-lg-4.control-label(for='customer[shipping][address][address1]')
+								| Address
+								span.require *
+							.col-lg-8
+								input.form-control(type='text', name='customer[shipping][address][address1]')
+
+						.form-group
+							label.col-lg-4.control-label(for='customer[shipping][address][city]')
+								| City
+								span.require *
+							.col-lg-3
+								input.form-control(type='text', name='customer[shipping][address][city]')
+							label.col-lg-2.control-label(for='customer[shipping][address][pcd]')
+								| Postal Code
+								span.require *
+							.col-lg-3
+								input.form-control(type='text', name='customer[shipping][address][pcd]')
+
+						.form-group
+							keys = new Array()
+							label.col-lg-4.control-label(for='customer[shipping][address][country]')
+								| Country
+								span.require *
+							.col-lg-3
+								select#country-input.form-control(name="customer[shipping][address][country]")
+									each obj in possibleCountries
+										- keys.push(obj.country_name)
+										option(value="#{obj.country_name}") #{APIcountries.getName(obj.country_name)}
+
+							label.col-lg-2.control-label(for='customer[shipping][address][province]')
+								| Region/State
+								span.require *
+							.col-lg-3
+								statename = 'customer[shipping][address][province]'
+								caplace = _.indexOf(keys, 'CA')
+								usplace =	_.indexOf(keys, 'US')
+								if caplace == 0 || usplace == 0
+									input#all-states.states-choices.form-control.hide(disabled, type='text', name=statename)
+								else
+									input#all-states.states-choices.form-control(type='text', name=statename)
+
+								if caplace != -1
+									select#ca-states.states-choices.form-control(class=(caplace == 0 ? '' : 'hide'), name=statename, disabled=(caplace == 0 ? false : true))
+										stateList = APIcountries.states["CA"]
+										each state, key in stateList
+											option(value="#{key}") #{state}
+								if usplace != -1
+									select#us-states.states-choices.form-control(class=(usplace == 0 ? '' : 'hide'), name=statename, disabled=(usplace == 0 ? false : true))
+										stateList = APIcountries.states["US"]
+										each state, key in stateList
+											option(value="#{key}") #{state}
+						.row	
+							.form-group
+								.col-lg-8.col-lg-offset-4
+									input(type='checkbox', name='customer[checkTerms]')
+									span.help-inline  I accept the
+										| I have read and agree to the
+										a(title='Privacy Policy', href='#')  Privacy Policy
+							.form-group
+								.col-lg-8.col-lg-offset-4
+									input(type='checkbox', name='customer[newsletter]', checked)
+									span.help-inline  I wish to subscribe to the #{shop.name} newsletter.
+						.row
+							.col-lg-8.col-md-offset-4.padding-left-0.padding-top-20
+								button.btn.btn-primary(type='submit') Sign up
+								p.response-message
+						//-.row
+							.col-lg-8.col-md-offset-4.padding-left-0.padding-top-10.padding-right-30
+								hr
+								.login-socio
+									p.text-muted or login using:
+									ul.social-icons
+										li
+											a.facebook(href='#', data-original-title='facebook', title='facebook')
+										li
+											a.twitter(href='#', data-original-title='Twitter', title='Twitter')
+										li
+											a.googleplus(href='#', data-original-title='Google Plus', title='Google Plus')
+										li
+											a.linkedin(href='#', data-original-title='Linkedin', title='LinkedIn')
+							//-.col-md-4.col-sm-4.pull-right
+								.form-info
+									h2
+										em Important
+										| Information
+									p Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.
+									button.btn.btn-default(type='button') More details
+
+block script
+	script(src='/js/custom/states-choices.js', type='text/javascript')
+	script(type='text/javascript').
+		$('form').on('submit', function(e) {
+			e.preventDefault();
+			var $responseMessage = $('.response-message')
+			$form = $(this);
+			var endRequest = function(message){
+				$responseMessage.removeClass('progress');;
+				$responseMessage.html(message);
+			};
+			$form.find('.response-message').removeClass('error success');
+			if($responseMessage.html()!=''){
+				$responseMessage.addClass('progress');
+				$responseMessage.html('Envoi en cours...');
+			}
+
+			$.ajax({
+				type: $(this).attr('method'),
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				dataType: 'json',
+				success: function(data) {
+					if(data.success) {
+						if(data.redirect)
+							window.location.href = data.redirect;
+						$responseMessage.addClass('success');
+					}
+					else {
+						$responseMessage.addClass('error');
+						$responseMessage.removeClass('success');
+					}
+					endRequest(data.message);
+				},
+				error: function(data) {
+					$responseMessage.removeClass('success');
+					$responseMessage.addClass('error');
+					endRequest('Une erreur est survenue, veuillez contacter le support.');
+				}
+			});
+			return false;
+		});

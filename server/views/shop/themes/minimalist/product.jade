@@ -1,0 +1,21 @@
+extend layout
+block content
+
+  h1 #{product.name}
+
+  .row
+    .large-4.columns
+      url = typeof product.thumbnail != "undefined" ? S3url+product.thumbnail.s400.path : "http://placehold.it/400x400";
+      img(src=url, alt="")
+      ul.gallery
+        if product && product.images && product.images.length
+          each image in product.images
+            if typeof image.files.s50 !== 'undefined'
+              li
+                img(src=S3url+image.files.s50.path, alt="")
+
+    .large-8.columns
+      if (product.description !== "")
+         p.desc #{product.description}
+      h2.price #{product.price} €
+      a(href="/cart/add/#{product.id}", addId='#{product.id}').button Add to cart

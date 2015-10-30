@@ -1,0 +1,19 @@
+if products_pages && products_pages.nb_page > 1
+  start = (products_pages.page-1) * products_pages.nb_per_page
+  end = start + products.length
+  total = products_pages.count
+  previous = products_pages.page > 1 ? products_pages.page-1 : 1
+  next = products_pages.page < products_pages.nb_page ? products_pages.page+1 : products_pages.nb_page
+  .col-md-4.col-sm-4.items-info Items #{start+1} to #{end} of #{total} total
+  .col-md-8.col-sm-8
+    ul.pagination.pull-right
+      li
+        a(href=products_pages.current_url+previous) «
+      - for(var i=1; i<=products_pages.nb_page; i++)
+        li
+          if i==products_pages.page
+            span= i
+          else
+            a(href=products_pages.current_url+i)= i
+      li
+        a(href=products_pages.current_url+next) »

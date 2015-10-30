@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  .main
+    .container
+      ul.breadcrumb
+        li
+          a(href='index.html') Home
+        li
+          a(href='') Store
+        li.active Men category
+      //- BEGIN SIDEBAR & CONTENT
+      .row.margin-bottom-40
+        include sidebar
+        
+        //- BEGIN CONTENT
+        .col-md-9.col-sm-7
+          .row.list-view-sorting.clearfix
+            .col-md-12.col-sm-12
+              .pull-right
+                label.control-label Show:
+                select.form-control.input-sm
+                  option(value='#?limit=24', selected='selected') 24
+                  option(value='#?limit=25') 25
+                  option(value='#?limit=50') 50
+                  option(value='#?limit=75') 75
+                  option(value='#?limit=100') 100
+              .pull-right
+                label.control-label Sort By:
+                select.form-control.input-sm
+                  option(value='#?sort=p.sort_order&order=ASC', selected='selected') Default
+                  option(value='#?sort=pd.name&order=ASC') Name (A - Z)
+                  option(value='#?sort=pd.name&order=DESC') Name (Z - A)
+                  option(value='#?sort=p.price&order=ASC') Price (Low > High)
+                  option(value='#?sort=p.price&order=DESC') Price (High > Low)
+          //- BEGIN PRODUCT LIST
+          .row.product-list
+
+            each product in products
+              include product_tpl
+
+          //- BEGIN PAGINATOR
+          .row
+            include pagination
+          //- END PAGINATOR
+        //- END CONTENT
+      //- END SIDEBAR & CONTENT

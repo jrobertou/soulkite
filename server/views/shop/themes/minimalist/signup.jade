@@ -1,0 +1,111 @@
+extend layout
+block content
+
+  h2 S'inscrire
+  .row
+    url = checkoutProcess?"/signup?checkout=true":"/signup"
+    form(action="#{url}", method="post", data-type='classic-form')
+      fieldset.span6
+        legend Création du compte
+        .control-group.row
+          .control-group.large-4.column
+            label.control-label(for="customer[email]") Adresse email
+            .controls
+              input(type="email", name="customer[email]")
+          .control-group.large-4.column
+            label.control-label(for="customer[name][last]") Nom
+            .controls
+              input(type="text",  name="customer[name][last]")
+          .control-group.large-4.column
+            label.control-label(for="customer[name][first]") Prénom 
+            .controls
+              input(type="text", name="customer[name][first]")
+        .control-group.row
+          .control-group.large-6.column
+            label.control-label(for="customer[password]") Mot de passe
+            .controls
+              input(type="password", name="customer[password]")
+          .control-group.large-6.column
+            label.control-label(for="customer[password2]") Confirmation du mot de passe
+            .controls
+              input(type="password", name="customer[password2]")
+      fieldset.span6
+        legend Informations de livraison
+        .control-group.row
+          .control-group.large-8.column
+            label.control-label(for="customer[address][address1]") Adresse
+            .controls    
+              input(type="text", name="customer[address][address1]")
+          .control-group.large-4.column
+            label.control-label(for="customer[address][town]") Ville
+            .controls
+              input(type="text", name="customer[address][town]")
+        .control-group.row
+          .control-group.large-3.column
+            label.control-label(for="customer[address][pcd]") Code postal
+            .controls
+              input(type="text", name="customer[address][pcd]")
+          .control-group.large-4.column
+            label.control-label(for="customer[address][country]") Country
+            .controls
+              select.input-medium.bfh-countries(name="customer[address][country]")
+                option(value="fr") France
+                option(value="es") Espagne
+                option(value="it") italie
+          .control-group.large-5.column
+              label.control-label(for="customer[contactNum]") Numéro de téléphone (contact uniquement pour la livraison)
+              .controls
+                input(type="text", name="customer[contactNum]")
+        .control-group
+          .control-group
+            .controls
+              label.checkbox
+                input(type='checkbox', name='customer[checkTerms]') 
+                span.help-inline  J'accepte les 
+                  a(data-toggle="modal", data-target="#modal", href="/modals/terms") termes & conditions
+                    |  d'utilisation
+        .control-group
+          span.response-message
+          button(type='submit').button S'inscrire
+
+block script
+  script(type='text/javascript').
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      var $responseMessage = $('.response-message')
+      $form = $(this);
+      var endRequest = function(message){
+        $responseMessage.removeClass('progress');;
+        $responseMessage.html(message);
+      };
+      $form.find('.response-message').removeClass('error success');
+      if($responseMessage.html()!=''){
+        $responseMessage.addClass('progress');
+        $responseMessage.html('Envoi en cours...');
+      }
+
+      $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(data) {
+          if(data.success) {
+            if(data.redirect)
+              window.location.href = data.redirect;
+            $responseMessage.addClass('success');
+          }
+          else {
+            $responseMessage.addClass('error');
+            $responseMessage.removeClass('success');
+          }
+          endRequest(data.message);
+        },
+        error: function(data) {
+          $responseMessage.removeClass('success');
+          $responseMessage.addClass('error');
+          endRequest('Une erreur est survenue, veuillez contacter le support.');
+        }
+      });
+      return false;
+    });

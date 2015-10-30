@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  .main
+    .container
+      // BEGIN SIDEBAR & CONTENT
+      .row.margin-bottom-40
+        // BEGIN CONTENT
+        .col-md-12.col-sm-12
+          h2 Cart
+          .shopping-cart-page
+            .shopping-cart-data.clearfix
+              if !cart
+                p Your shopping cart is empty!
+              else
+                .table-wrapper-responsive
+                  table(summary='Shopping cart')
+                    tbody
+                      tr
+                        th.shopping-cart-image Image
+                        th.shopping-cart-description Description
+                        //-th.shopping-cart-ref-no Ref
+                        th.shopping-cart-quantity Quantité
+                        th.shopping-cart-price Prix unitaire
+                        th.shopping-cart-total(colspan='2') Total
+
+                      each product, key in cart.products
+                        link = "/product/"+product.slug
+                        url = product.thumbnail ? S3url+product.thumbnail : "http://placehold.it/240x220";
+                        tr(data-cart-line, data-cart-line-id=key)
+                          td.shopping-cart-image
+                            a(href=link)
+                              img(src=url, alt=product.name)
+                          td.shopping-cart-description
+                            h3
+                              a(href=link)= product.name
+                            if product.variant
+                              p
+                                each v in product.variant.data
+                                  | #{v.name}: #{v.value}
+                                  br
+                          //-td.shopping-cart-ref-no
+                          td.shopping-cart-quantity
+                            .product-quantity
+                              input#product-quantity.form-control.input-sm(type='text', value=product.quantity, readonly='', data-action="update_quantity")
+                          td.shopping-cart-price
+                            strong
+                              span #{ __displayPrice(shop.currency, product.price)}
+                          td.shopping-cart-total
+                            strong
+                              span #{__displayPrice(shop.currency, product.price*product.quantity)}
+                          td.del-goods-col
+                            a.del-goods(href='#', data-action="remove_from_cart")
+                              i.fa.fa-times
+
+                .shopping-total
+                  ul
+                    li.shopping-total-price
+                      em Total
+                      strong.price
+                        span #{__displayPrice(shop.currency, cart.total)}
+
+            a.btn.btn-default(href='/')
+              if cart
+                | Continue shopping  
+                i.fa.fa-shopping-cart
+              else
+                | Start shopping  
+                i.fa.fa-shopping-cart
+            if cart
+              a.btn.btn-primary(href='/checkout')
+                | Checkout  
+                i.fa.fa-check
+          // END CONTENT
+        // END SIDEBAR & CONTENT

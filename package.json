@@ -1,0 +1,39 @@
+{
+  "name": "MyShop",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=development node server"
+  },
+  "dependencies": {
+    "async": "*",
+    "aws-sdk": "*",
+    "bcrypt": "*",
+    "body-parser": "*",
+    "connect-mongo": "*",
+    "cookie-parser": "*",
+    "country-list": "*",
+    "errorhandler": "*",
+    "express": "3.x.x",
+    "express-pjax": "*",
+    "express-session": "*",
+    "gm": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-css": "*",
+    "i18n": "*",
+    "jade": "0.35.0",
+    "mongoose": "*",
+    "monguurl": "~0.1.0",
+    "multer": "1.1.0",
+    "nodemailer": "0.7.1",
+    "querystring": "*",
+    "request": "*",
+    "serve-favicon": "*",
+    "underscore": "*"
+  },
+  "author": "MyShop"
+}

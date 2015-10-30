@@ -1,0 +1,42 @@
+extends layout
+
+block content
+
+  h1 Coupons
+    | 
+    a.button.small.right(href="/admin/coupons/add", data-pjax)
+      i.fa.fa-plus
+      |  Nouveau coupon
+
+  if coupons.length>0
+   table.listing
+      thead
+        tr
+          th
+            .square
+              input(type="checkbox", id="checkall", data-action="checkall")
+              label(for="checkall")
+          th Nom
+          th Code
+          th Date début
+          th Date fin
+          th
+      tbody
+        each coupon in coupons
+          tr
+            url = '/admin/coupons/edit/'+coupon._id;
+            td.checkbox
+              .square
+                input(type="checkbox", value="", id="square_"+coupon._id, name="product_ids["+coupon._id+"]").checkbox
+                label(for="square_"+coupon._id)
+            td
+              a(href=url, data-pjax) #{coupon.name}
+            td #{coupon.code}
+            td #{coupon.start_date.toDateString()}
+              div.small #{coupon.start_date.toLocaleTimeString()}
+            td #{coupon.end_date.toDateString()}
+              div.small #{coupon.end_date.toLocaleTimeString()}
+            td
+              a.button.small(href=url, data-pjax) Éditer
+  else
+    p Aucun coupon

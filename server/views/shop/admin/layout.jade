@@ -1,0 +1,74 @@
+doctype html
+html(lang="en")
+	meta(http-equiv='Content-Type', content='text/html;charset=UTF-8')
+	head
+		title Admin #{title}
+		link(href="/css/admin/admin.min.css", rel="stylesheet")
+		script(type='text/javascript', src='/js/admin/admin.min.js')
+		//-
+			script(type='text/javascript', src='/js/libs/jquery-1.10.2.min.js')
+			script(type='text/javascript', src='/js/libs/highcharts.js')
+	body
+		
+		header.header
+			.row
+				.large-8.columns 
+					h1.logo Mon eBoutique.fr
+				.large-4.columns
+					span.right 
+						|	Connecté en tant que <b>#{user.name.first}</b> 
+						a(href="/admin/logout")
+							i.fa.fa-2.fa-times-circle
+
+		section.container
+			nav.nav
+				div.item(class=(menuActive=='dashboard'?'active':''))
+					a(href='/admin/dashboard', data-pjax)
+						i.fa.fa-tachometer
+						| Tableau de bord
+				div.item(class=(menuActive=='orders'?'active':''))
+					a(href='/admin/orders', data-pjax)
+						i.fa.fa-book
+						| Commandes
+				div.item(class=(menuActive=='categories'?'active':''))
+					a(href='/admin/categories', data-pjax)
+						i.fa.fa-folder
+						| Catégories
+				div.item(class=(menuActive=='products'?'active':''))
+					a(href='/admin/products', data-pjax)
+						i.fa.fa-tags
+						| Produits
+				div.item(class=(menuActive=='coupons'?'active':''))
+					a(href='/admin/coupons', data-pjax)
+						i.fa.fa-bullhorn
+						| Coupons
+				div.item(class=(menuActive=='settings'?'active':''))
+					a(href='/admin/settings', data-pjax) 
+						i.fa.fa-cog
+						| Paramètres
+
+			#loading.hide
+				i.fa.fa-refresh.fa-spin
+
+			section.content#content
+				.row
+					.large-12.columns
+						block content
+
+			//-
+				script(type='text/javascript', src='/js/libs/modernizr.custom.min.js')
+				script(type='text/javascript', src='/js/libs/jquery-ui-1.10.3.custom.min.js')
+				script(type='text/javascript', src='/js/libs/jquery.pjax.js')
+				script(type='text/javascript', src='/js/custom/helper-actions.js')
+				script(type='text/javascript', src='/js/custom/helper-forms.js')  
+				script(type='text/javascript', src="/js/dropzone.js")
+				script(type='text/javascript', src="/js/admin.js")
+				script(type='text/javascript', src="/js/admin/category.js")
+				script(type='text/javascript', src="/js/admin/product.js")
+				script(type='text/javascript', src="/js/custom/pjax.js")
+				script(type='text/javascript', src="/js/libs/foundation.min.js")
+				script(type='text/javascript', src="/js/libs/foundation.reveal.js")
+				script(type='text/javascript', src="/js/libs/foundation.tooltip.js")
+				script(type='text/javascript', src="/js/libs/foundation.dropdown.js")
+				script(type='text/javascript', src='/js/custom/states-choices.js')
+			block script

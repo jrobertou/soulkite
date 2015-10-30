@@ -1,0 +1,101 @@
+extends layout
+block subcontent
+	div.setting-group.shop-setting.form
+		div.row
+			div.large-12.columns
+				h3 Page de contact:
+				div.row
+					div.large-3.columns.align-right
+						p.bold Email de contact:
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{user.shop.contact_email}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									input.input-field(type='text', name='contact_email', value="#{user.shop.contact_email}")
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Texte de promotion de la société:
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') 
+								if user.shop.custom_settings.company_promotion
+									| #{user.shop.custom_settings.company_promotion}
+								else
+									span.input-example ex: Notre expertise CRM est reconnue comme l'une des plus poussée sur le marché français, avec des partenaires de renoms comme SugarCRM,  et SageCRM Solutions (nous sommes certifiés SageCRM et Saleslogix).
+								i.fa.fa-pencil
+							div.true-input.hide.row
+								val = (user.shop.custom_settings.company_promotion ? user.shop.custom_settings.company_promotion : '')
+								div.large-9.columns
+									textarea.input-field(type='text', name='company_promotion', value=val)
+								div.large-3.columns
+									button.fa-no-margin.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Description société:
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') 
+								if user.shop.custom_settings.company_details
+									| #{user.shop.custom_settings.company_details}
+								else
+									span.input-example ex: SARL patrick & fils
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									val = (user.shop.custom_settings.company_details ? user.shop.custom_settings.company_details : '')
+									input.input-field(type='text', name='company_details' value=val)
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Adresse siège social :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input')
+								if user.shop.custom_settings.company_address
+									| #{user.shop.custom_settings.company_address}
+								else
+									span.input-example ex: 13 avenue du magasin, 33034 Ville, FRANCE
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									val = (user.shop.custom_settings.company_address ? user.shop.custom_settings.company_address : '')
+									input.input-field(type='text', name='company_address', value=val)
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Affichage la carte :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							valMap = user.shop.custom_settings.map_showing && user.shop.custom_settings.map_showing == "true" ? "true": "false"
+							input.hiden-real-value(type="hidden" name="map_showing" value=valMap)
+							div.onoffswitch
+								if valMap == "true"
+									input.onoffswitch-checkbox.form-submiter(id='map_showingSwitch', type='checkbox', name='map_showingSwitch', checked)
+								else
+									input.onoffswitch-checkbox.form-submiter(id='map_showingSwitch', type='checkbox', name='map_showingSwitch')
+								label.onoffswitch-label(for="map_showingSwitch")
+										div.onoffswitch-inner
+										div.onoffswitch-switch
+				div.row
+					div.large-3.columns.align-right
+						p.bold Téphone de contact :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input')
+								if user.shop.custom_settings.company_phone_number
+									| #{user.shop.custom_settings.company_phone_number}
+								else
+									span.input-example ex: +33 55 66 64 09 78
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									val = (user.shop.custom_settings.company_phone_number ? user.shop.custom_settings.company_phone_number : '')
+									input.input-field(type='text', name='company_phone_number', value=val)
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")

@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+	head
+		title #{name} | #{title}
+		link(href="/themes/minimalist/global.css", rel="stylesheet")
+	body
+		.row
+			.large-12.columns
+				header
+					section.menu		
+						ul
+							li 
+								a(href="/") Boutique
+							li 
+								a(href="/contact") À Propos
+							include cartmenu
+
+							if (!customer)
+								li.right
+									a(href="/login") Se connecter 
+							else
+								li.right
+									a(href="/myaccount") Mon compte
+								li.right      
+									a(href="/myaccount/logout") Déconnexion
+
+					if shop && shop.custom_settings && shop.custom_settings.banner_showing == "true"
+						section.ban 
+							a(href="/")
+								img(src="http://placehold.it/1050x220")
+		.row
+			.large-12.columns
+				block content
+		script(type='text/javascript', src='/js/libs/jquery-1.10.2.min.js')
+		block script

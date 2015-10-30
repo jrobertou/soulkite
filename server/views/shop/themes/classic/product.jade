@@ -1,0 +1,130 @@
+extends layout
+
+block content
+
+  .main
+    .container
+      ul.breadcrumb
+        li
+          a(href='index.html') Home
+        li
+          a(href='') Store
+        li.active #{product.name}
+      //- BEGIN SIDEBAR & CONTENT
+      .row.margin-bottom-40
+        include sidebar
+        
+        url = product.thumbnail ? S3url+product.thumbnail.s400.path : "http://placehold.it/240x220";
+        url_original = product.thumbnail ? S3url+product.thumbnail.original.path : "http://placehold.it/240x220";
+        isSale = product.variants.regular_price_min != product.variants.price_min
+        firstVariantId = Object.keys(product.variants.data)[0]
+
+        //- BEGIN CONTENT
+        .col-md-9.col-sm-7
+          if alert
+            .alert.alert-warning
+              b= __('Warning')
+              | : #{__('Please choose the options (%s) in order to add the product to your cart.', alert)}
+          .product-page
+            .row
+              .col-md-6.col-sm-6
+                .product-main-image(style='position: relative; overflow: hidden;')
+                  img.img-responsive(src=url, alt=product.name, data-bigimgsrc=url_original)
+                  img.zoomImg(src=url, style='position: absolute; top: -186.03100775193798px; left: -36.60077519379845px; opacity: 0; width: 600px; height: 800px; border: none; max-width: none;')
+
+                if product && product.images && product.images.length>1
+                  .product-other-images
+                    each image in product.images
+                      a.active(href='#')
+                        img(alt=product.name, src=S3url+image.files.s200.path)
+                  
+              .col-md-6.col-sm-6
+                h1 #{product.name}
+                .price-availability-block.clearfix
+                  .price
+                    strong #{__displayPrice(shop.currency, product.variants.price_min)}
+                    if isSale
+                      em
+                        span #{__displayPrice(shop.currency, product.variants.regular_price_min)}
+                  .availability Disponibilité:  
+                    strong #{product.variants.stock_max>0 ? 'En stock' : 'Rupture de stock'}
+                .description
+                  p #{product.description}
+
+                if product.variants.stock_max > 0
+                  form(method="post", action="/cart/add")
+                    input(type="hidden", name="product[id]", value=product._id)
+                    input(type="hidden", name="product[variant_id]", value=firstVariantId)
+                    if product.variants.options && product.variants.options.length
+                      script.
+                        var variants_data = !{JSON.stringify(product.variants.data)}
+                      .product-page-options
+                        each v in product.variants.options
+                          .pull-left
+                            label.control-label #{v.name}:
+                            select.form-control.input-sm(name="product[variants]["+v.slug+"]", data-variant=v.slug)
+                              each key_variant in v.list
+                                option(value=key_variant) #{key_variant}
+            
+                    .product-page-cart
+                      .product-quantity
+                          input#product-quantity.form-control.input-sm(type="text", name="product[qty]", value="1", readonly="readonly")
+                        button.btn.btn-primary(type='submit', data-action="add_to_cart")= __('Add to cart')
+                      .response-message
+
+                ul.social-icons
+                  li
+                    a.facebook(data-original-title='facebook', href='#')
+                  li
+                    a.twitter(data-original-title='twitter', href='#')
+                  li
+                    a.googleplus(data-original-title='googleplus', href='#')
+                  li
+                    a.evernote(data-original-title='evernote', href='#')
+                  li
+                    a.tumblr(data-original-title='tumblr', href='#')
+
+              weight = product.variants.data[firstVariantId].weight
+              dimensions = product.variants.data[firstVariantId].dimensions
+              needInfoTab = product.variants.options.length || weight || dimensions
+              .product-page-content
+                ul#myTab.nav.nav-tabs
+                  li.active
+                    a(href='#Description', data-toggle='tab') Description
+                  if needInfoTab
+                    li
+                      a(href='#Information', data-toggle='tab') Information
+
+                #myTabContent.tab-content
+                  #Description.tab-pane.fade.in.active
+                    p #{product.description}
+                  if needInfoTab
+                    #Information.tab-pane.fade
+                      table.datasheet
+                        tbody
+                          tr
+                            th(colspan='2') Additional features
+                          if product.variants.options && product.variants.options.length
+                            each v in product.variants.options
+                              tr
+                                td.datasheet-features-type #{v.name}
+                                td= __displayListing(v.list)
+                          if weight
+                            tr
+                              td.datasheet-features-type #{__('Weight')}
+                              td #{weight} kg
+                          if dimensions
+                            tr
+                              td.datasheet-features-type #{__('Dimensions')}
+                              td #{dimensions} cm
+              if isSale
+                .sticker.sticker-sale
+        //- END CONTENT
+      //- END SIDEBAR & CONTENT
+      //- BEGIN SIMILAR PRODUCTS
+      .row.margin-bottom-40
+        .col-md-12.col-sm-12.bxslider-wrapper.bxslider-wrapper-similar-products
+          h2 Most popular products
+          ul.bxslider.bxslider-similar-products(data-slides-phone='1', data-slides-tablet='2', data-slides-desktop='4', data-slide-margin='20')
+            include product_tpl_slider
+      //- END SIMILAR PRODUCTS

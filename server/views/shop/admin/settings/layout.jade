@@ -1,0 +1,27 @@
+extends ../layout
+block content
+	div.page-header
+		h1 Parametres
+		div.row
+			div.large-12.columns
+				ul.button-group
+					li
+						a(href="/admin/settings", class=(submenuActive=='user'?'button active':'button'), data-type='action-group', data-group='.setting-group', data-target='.user-setting')
+							| Général
+					li
+						a(href="/admin/settings/pages", class=(submenuActive=='pages'?'button active':'button'), data-type='action-group', data-group='.setting-group', data-target='.user-setting')
+							| Contenu
+					li
+						a(href="/admin/settings/theme", class=(submenuActive=='theme'?'button active':'button'), data-type='action-group', data-group='.setting-group', data-target='.shop-setting')
+							| Theme
+					li
+						a(href="/admin/settings/shipping", class=(submenuActive=='shipping'?'button active':'button'), data-type='action-group', data-group='.setting-group', data-target='.user-setting')
+							| Livraison
+					li
+						a(href="/admin/settings/tax", class=(submenuActive=='tax'?'button active':'button'), data-type='action-group', data-group='.setting-group', data-target='.shop-setting')
+							| Tax & Fee
+
+							
+	div.row
+		div.large-12.columns
+			block subcontent

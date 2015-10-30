@@ -1,0 +1,77 @@
+extends layout
+block content
+
+  h1 Catégories
+    |
+    a.button.small.right.new_cat_form
+      i.fa.fa-plus
+      |  Nouvelle catégorie
+
+  if err
+    span.response-message.error #{err}
+
+  table.listing
+    thead
+      tr
+        th Nom
+        th Ordre
+        if page.level === 0
+          th Sous-Categories
+        th(width='20%')
+    tbody
+      place = Object.keys(categories).length + 1;
+      form(method='post', action='/admin/category/add')
+        tr#newCatForm.hide
+          td
+            input(type="text",name="category[name]",placeholder="name")
+          td
+            input(type="text",name="category[place]",placeholder="Ordre", value="#{place}")
+          if page.level === 0
+            td
+          td
+            input(type="hidden",name="category[parentId]", value="#{page.parent}")
+            input(type="hidden",name="category[level]", value="#{page.level}")
+            input.button.small(type="submit" value="Ajouter")
+
+      if Object.keys(categories).length>0
+        each cat in categories
+          hassubcat = typeof cat.childs !== 'undefined' && cat.childs.length
+          if cat.level == page.level
+            tr(id="displaycat#{cat._id}")
+              td
+                if page.level === 0
+                  a(href="/admin/category/#{cat._id}") #{cat.name}
+                else
+                  | #{cat.name}
+              td #{cat.place}
+              if page.level === 0
+                td
+                  if hassubcat
+                    lastId = cat.childs[cat.childs.length-1]._id
+                    each subcat in cat.childs
+                      | #{subcat.name}
+                      if subcat._id != lastId
+                        ,
+                  else
+                    | Aucune
+              td
+                if !hassubcat
+                  a.button.small.alert.right(href="/admin/category/delete/#{cat.parentId}/#{cat._id}") Supprimer
+                button.editcat.button.small(data-id="#{cat._id}") Modifier
+            tr(id="inputcat#{cat._id}").hide
+              form(method='post', action='/admin/category/edit/#{cat._id}', data-type='classic-form')
+                td
+                  input(type="text",name="category[name]",placeholder="name", value="#{cat.name}")
+
+                td
+                  input(type="text",name="category[place]",placeholder="Ordre", value="#{cat.place}")
+                if page.level === 0
+                  td
+                td
+                  button.canceleditcat.button.small.right(data-id="#{cat._id}") Annuler
+                  button.button.small(type="submit") Enregistrer
+      else
+        tr
+          td(colspan=4) Aucune catégorie
+
+block script

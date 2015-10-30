@@ -1,0 +1,33 @@
+//- START CART
+cart_count = cart ? cart.count : 0;
+cart_total = cart ? cart.total : 0;
+
+.cart-block(data-menu-cart)
+  .cart-info
+    a.cart-info-count(href='')= __n("%d item", "%d items", cart_count)
+    —
+    a.cart-info-value(href='') #{__displayPrice(shop.currency, cart_total)}
+  i.fa.fa-shopping-cart
+  //- BEGIN CART CONTENT
+  .cart-content-wrapper
+    .cart-content
+      if cart && cart.products
+        ul
+          each product, key in cart.products
+            link = "/product/"+product.slug
+            url = product && product.thumbnail ? S3url+product.thumbnail : "http://placehold.it/240x220";
+            li(data-cart-line, data-cart-line-id=key)
+              a(href=link)
+                img(src=url, alt=product.name, width='37', height='34')
+              span.cart-content-count x #{product.quantity}
+              strong
+                a(href=link) #{product.name}
+              em #{__displayPrice(shop.currency, product.price)}
+              a.del-goods(href="#", data-action="remove_from_cart")
+                i.fa.fa-times
+      else
+        ul
+          li Your cart is empty
+      .text-right
+        a.btn.btn-default(href='/shopping-cart') View Cart
+        a.btn.btn-primary(href='/checkout') Checkout

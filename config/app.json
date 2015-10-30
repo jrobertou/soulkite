@@ -1,0 +1,15 @@
+{
+	"connection" : "mongodb://localhost/myshop",
+	"cookie_secret" : "session1234567890secret",
+   "themes": ["classic","minimalist","_marciano"],
+
+	"shop" : {
+	  "name" : "Mon eBoutique.fr",
+	  "owner" : "Jérémy Robertou"
+	},
+  "uploadPath": "public/uploads/",
+  "S3": {
+    "bucket": "myshop-img",
+    "url": "https://d21z4yqm0e7uqv.cloudfront.net/"
+  }
+}

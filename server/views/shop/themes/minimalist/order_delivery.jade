@@ -1,0 +1,46 @@
+extend layout
+block content
+	div.row
+		h2 #{title}
+		hr
+	div.row
+		div.pull-right
+			h4 Total: #{cart.total}
+	div.row
+		h2 Address de livraison
+		hr
+	div.row 
+		table.table
+			thead
+				tr
+					th  Select
+					th  Address 1
+					th  Town
+					th  Zip/Postal
+			tr
+				tbody
+					td  
+					td= customer.address.address1
+					td= customer.address.town
+					td= customer.address.pcd
+	div.row
+		h2 Address de facturation
+		hr
+	div.row 
+		table.table
+			thead
+				tr
+					th  Select
+					th  Address 1
+					th  Town
+					th  Zip/Postal
+					tr
+				tbody
+					td  
+					td= customer.address.address1
+					td= customer.address.town
+					td= customer.address.pcd
+	div.row
+		form(action="/order/delivery", method="post").form-horizontal
+				div.control-group
+						button(type="submit").button Confirm and Pay

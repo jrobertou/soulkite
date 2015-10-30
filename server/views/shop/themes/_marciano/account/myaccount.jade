@@ -1,0 +1,37 @@
+extend layout
+block subcontent
+	.col-md-9.col-sm-9
+		h2 My Account
+		.content-form-page
+			.row
+				.col-md-11.col-sm-12
+					form.form-horizontal.form-without-legend
+						.form-group
+							p.col-lg-4.control-label
+								| Email
+							p.col-lg-8
+								| #{customer.email}
+								//-input.form-control(type='text', name='customer[email]')
+						
+						.form-group
+							p.col-lg-4.control-label
+								| Name
+							p.col-lg-8
+								| #{customer.name.first} #{customer.name.last}
+
+						.form-group
+							p.col-lg-4.control-label
+								| Shipping Address
+							.col-lg-8
+								p #{customer.shipping.name}
+								p #{customer.shipping.address.address1}
+								p #{customer.shipping.address.city}, #{customer.shipping.address.pcd}, #{customer.shipping.address.province}
+								p #{APIcountries.getName(customer.shipping.address.country)}
+						.form-group
+							p.col-lg-4.control-label
+								| Billing Address
+							.col-lg-8
+								p #{customer.billing.name}
+								p #{customer.billing.address.address1}
+								p #{customer.billing.address.city}, #{customer.billing.address.pcd}, #{customer.billing.address.province}
+								p #{APIcountries.getName(customer.billing.address.country)}

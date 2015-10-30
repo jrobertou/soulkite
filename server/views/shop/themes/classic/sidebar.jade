@@ -1,0 +1,34 @@
+//- BEGIN SIDEBAR
+.sidebar.col-md-3.col-sm-5
+  ul.list-group.margin-bottom-25.sidebar-menu
+    each cat in shop.categories
+      link = "/category/"+cat.slug
+      li.list-group-item.clearfix
+        a(href=link).parent #{cat.name}
+        if cat.childs.length
+          ul.dropdown-menu(style='display:block;')
+            each c in cat.childs
+              link = "/category/"+c.slug
+              li.list-group-item.dropdown.clearfix.active
+                a.collapsed(href=link) #{c.name}
+      
+  .sidebar-products.clearfix
+    h2 Bestsellers
+    .item
+      a(href='item.html')
+        img(src='assets/temp/products/k1.jpg', alt='Some Shoes in Animal with Cut Out')
+      h3
+        a(href='item.html') Some Shoes in Animal with Cut Out
+      .price $31.00
+    .item
+      a(href='item.html')
+        img(src='assets/temp/products/k4.jpg', alt='Some Shoes in Animal with Cut Out')
+      h3
+        a(href='item.html') Some Shoes in Animal with Cut Out
+      .price $23.00
+    .item
+      a(href='item.html')
+        img(src='assets/temp/products/k3.jpg', alt='Some Shoes in Animal with Cut Out')
+      h3
+        a(href='item.html') Some Shoes in Animal with Cut Out
+      .price $86.00

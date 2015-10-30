@@ -1,0 +1,71 @@
+extends layout
+block subcontent
+	form.form(method='post', action='/admin/settings/tax/addcountry', data-type="classic-form")
+		span.response-message.hide
+		div.row
+			div.large-6.columns
+				select#country-input(name='country')
+					option(value='', disabled, selected) Choisissez un pays
+					each country in APIcountries.getNames()
+						code = APIcountries.getCode(country)
+						option(value='#{code}') #{country}
+
+					statename = 'province'
+				br
+				select#ca-states.states-choices.form-control.hide(name='province', disabled)
+					stateList = APIcountries.states["CA"]
+					each state, key in stateList
+						option(value="#{key}") #{state}
+				select#us-states.states-choices.form-control.hide(name='province', disabled)
+					stateList = APIcountries.states["US"]
+					each state, key in stateList
+						option(value="#{key}") #{state}
+
+			div.large-6.columns
+				button.button.small(type="submit").large-4.columns
+					i.fa.fa-plus
+					|  Pays applicable
+	.row
+		.large-12.columns
+				each country in tax.countries
+					.row
+						.large-3.columns
+							tab = country.country.split('-')
+							if tab.length > 1
+								h2 #{APIcountries.getName(tab[0])} - #{tab[1]}
+							else
+								h2 #{APIcountries.getName(country.country)}
+							a.button.small.alert(href="/admin/settings/tax/deletecountry/#{country._id}/#{country.country}") Supprimer
+						.large-9.columns
+							table
+								thead
+									tr
+										th Nom
+										th Pourcentage 
+										th Inclu dans le prix de vente
+										th
+								tbody
+									if tax.rates && tax.rates[country.country]
+										each rate in tax.rates[country.country]
+											tr
+												td #{rate.name}
+												td #{rate.percent} %
+												if rate.includedInPrice
+													td #{__("true")}
+												else
+													td #{__("false")}
+												td 
+													a.button.small.alert(href="/admin/settings/tax/#{country.country}/deletetax/#{rate._id}")	Supprimer
+									form(method='post', action='/admin/settings/tax/#{country.country}/addtax', data-type="classic-form")
+										tr.response-message.hide
+										tr
+											td 
+												input(type="text",name="tax[name]",placeholder="name", value="")
+											td 
+												input(type="text",name="tax[percent]",placeholder="20,0", value="")
+											td
+												select(name='tax[includedInPrice]')
+													option(value='true') Oui
+													option(value='false') Non
+											td
+												button.button.small(type="submit") Ajouter

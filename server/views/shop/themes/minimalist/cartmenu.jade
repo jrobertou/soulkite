@@ -1,0 +1,6 @@
+if (cart && cart.products)
+	li.has-dropdown.not-click.right#cart
+		a(href="/order/cart") Panier (#{cart.count})
+else
+	li.right
+		a(href="/order/cart") Panier

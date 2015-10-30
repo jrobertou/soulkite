@@ -1,0 +1,53 @@
+extend layout
+block subcontent
+	.col-md-9.col-sm-9
+		h1 Login
+		.content-form-page
+			.row
+				.col-md-7.col-sm-7
+					url = checkoutProcess?"/login?checkout=true":"/login"
+					form.form-horizontal.form-without-legend(action="#{url}", method="post", role='form')
+						if err
+							p #{err}
+						.form-group
+							label.col-lg-4.control-label(for='email')
+								| Email
+								span.require *
+							.col-lg-8
+								input#email.form-control(type='text', name='email')
+						.form-group
+							label.col-lg-4.control-label(for='password')
+								| Password
+								span.require *
+							.col-lg-8
+								input#password.form-control(type='password', name='password')
+						.row
+							.col-lg-8.col-md-offset-4.padding-left-0
+								url2 = checkoutProcess?"/signup?checkout=true":"/signup"
+								a(href='#{url2}') Sign up
+								|  | 
+								a(href='/account/forgot-password') Forget Password?
+						.row
+							.col-lg-8.col-md-offset-4.padding-left-0.padding-top-20
+								button.btn.btn-primary(type='submit') Login
+						.row
+							.col-lg-8.col-md-offset-4.padding-left-0.padding-top-10.padding-right-30
+								hr
+								.login-socio
+									p.text-muted or login using:
+									ul.social-icons
+										li
+											a.facebook(href='#', data-original-title='facebook', title='facebook')
+										li
+											a.twitter(href='#', data-original-title='Twitter', title='Twitter')
+										li
+											a.googleplus(href='#', data-original-title='Google Plus', title='Google Plus')
+										li
+											a.linkedin(href='#', data-original-title='Linkedin', title='LinkedIn')
+				.col-md-4.col-sm-4.pull-right
+					.form-info
+						h2
+							em Important
+							| Information
+						p Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.
+						button.btn.btn-default(type='button') More details

@@ -1,0 +1,79 @@
+extends layout
+block content
+  .page-header
+    h1 Details de la commande
+  hr 
+  .container
+    if order
+      div.row
+        div.large-12.columns
+          h3 Client :
+        div.large-11.columns.large-offset-1
+          p #{order.customer.email} 
+            br
+            | #{order.customer.name.first} #{order.customer.name.first}
+      div.row
+        div.large-6.columns
+          h3 Adresse de livraison :
+        div.large-6.columns
+          h3 Adresse de facturation :
+        div.large-5.columns.large-offset-1
+          address = order.customer.shipping.address
+          p #{order.customer.shipping.name}
+            br 
+            | #{address.address1}
+            br 
+            | #{address.city}, #{address.pcd}, #{address.province}
+            br 
+            | #{APIcountries.getName(address.country)}
+        div.large-5.columns
+          address = order.customer.billing.address
+          p #{order.customer.shipping.name}
+            br 
+            | #{address.address1}
+            br 
+            | #{address.city}, #{address.pcd}, #{address.province}
+            br 
+            | #{APIcountries.getName(address.country)}
+      hr
+      .row
+        .large-12.columns
+          h3 Commande :   
+      .row
+        .large-12.columns
+          .table-wrapper-responsive
+            table
+              tbody
+                tr
+                  th Description
+                  th Quantity
+                  th Price
+                  th Total
+                each product in order.cart.products
+                  tr
+                    td
+                      p #{product.name}
+                        if product.variant
+                          each v in product.variant.data
+                            br
+                            i #{v.name}: #{v.value}
+                            
+                    td.align-center 1
+                    td.align-center
+                      = __displayPrice(user.shop.currency, product.price)
+                    td.align-center
+                      = __displayPrice(user.shop.currency, product.price*product.quantity)
+              tr
+              each tax in order.taxes
+                tr
+                  td
+                  td
+                  customClass = tax.important?'bold':'small'
+                  td.align-right(class=customClass)
+                    em !{tax.name}  
+                      if tax.percent
+                        i.small (#{tax.percent}%)
+                  td(class=customClass).align-right
+                   = __displayPrice(user.shop.currency, tax.value)
+    else
+      p Aucun produit

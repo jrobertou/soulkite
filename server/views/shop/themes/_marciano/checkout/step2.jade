@@ -1,0 +1,135 @@
+extend layout
+block step2
+  form(action="/myaccount/update?checkout=true", method="post", role='form', data-type='classic-form')
+    .panel-body
+      .row
+        .col-md-12.col-sm-12
+          h3 Contact 
+      .row
+        .col-md-4.col-sm-12
+          .form-group
+            label(for='email')
+              | E-Mail
+            p 
+              strong #{customer.email}
+
+        .col-md-4.col-sm-12
+          .form-group
+            label(for='firstname')
+              | First Name
+              span.require *
+            input.form-control(type='text', name='customer[name][first]', value='#{customer.name.first}')
+        .col-md-4.col-sm-12
+          .form-group
+            label(for='lastname')
+              | Last Name
+              span.require *
+            input.form-control(type='text', name='customer[name][last]', value='#{customer.name.last}')
+      .row
+        .col-md-6.col-sm-6
+          h3 Your Shipping Address
+          .form-group
+            label(for='customer[shipping][name]') Name
+              span.require *
+            input.form-control(type='text', name='customer[shipping][name]', value='#{customer.shipping.name}')
+          .form-group
+            label(for='customer[shipping][address][address1]') Address 1
+              span.require *
+            input.form-control(type='text', name='customer[shipping][address][address1]', value='#{customer.shipping.address.address1}')
+          .form-group
+            label(for='customer[shipping][address][city]')
+              | City
+              span.require *
+            input.form-control(type='text', name='customer[shipping][address][city]', value='#{customer.shipping.address.city}')
+          .form-group
+            label(for='customer[shipping][address][pcd]')
+              | Post Code
+              span.require *
+            input.form-control(type='text', name='customer[shipping][address][pcd]', value='#{customer.shipping.address.pcd}')
+          .form-group
+          keys = new Array()
+            label(for='customer[shipping][address][country]')
+              | Country
+              span.require *
+            select#country-input.form-control(name="customer[shipping][address][country]")
+              each obj in possibleCountries
+                - keys.push(obj.country_name)
+                val = APIcountries.getName(obj.country_name)
+                if val == customer.shipping.address.country
+                  option(value="#{obj.country_name}", selected) #{val}
+                else
+                  option(value="#{obj.country_name}") #{val}
+            br
+          .form-group
+            label(for='customer[shipping][address][province]')
+              | Region/State
+              span.require
+            statename = 'customer[shipping][address][province]'
+            caplace = _.indexOf(keys, 'CA')
+            usplace = _.indexOf(keys, 'US')
+            if caplace == 0 || usplace == 0
+              input#all-states.states-choices.form-control.hide(disabled, type='text', name=statename)
+            else
+              input#all-states.states-choices.form-control(type='text', name=statename)
+
+            if caplace != -1
+              select#ca-states.states-choices.form-control(class=(caplace == 0 ? '' : 'hide'), name=statename, disabled=(caplace == 0 ? false : true))
+                stateList = APIcountries.states["CA"]
+                each state, key in stateList
+                  option(value="#{key}", selected=(customer.shipping.address.province==key?true:false)) #{state}
+            if usplace != -1
+              select#us-states.states-choices.form-control(class=(usplace == 0 ? '' : 'hide'), name=statename, disabled=(usplace == 0 ? false : true))
+                stateList = APIcountries.states["US"]
+                each state, key in stateList
+                  option(value="#{key}", selected=(customer.shipping.address.province==key?true:false)) #{state}
+        .col-md-6.col-sm-6
+          h3 Your Billing Address
+          .form-group
+            label(for='customer[billing][name]') Name
+              span.require *
+            input.form-control(type='text', name='customer[billing][name]', value='#{customer.billing.name}')
+          .form-group
+            label(for='customer[billing][address][address1]') Address 1
+              span.require *
+            input.form-control(type='text', name='customer[billing][address][address1]', value='#{customer.billing.address.address1}')
+          .form-group
+            label(for='customer[billing][address][city]')
+              | City
+              span.require *
+            input.form-control(type='text', name='customer[billing][address][city]', value='#{customer.billing.address.city}')
+          .form-group
+            label(for='customer[billing][address][pcd]')
+              | Post Code
+              span.require *
+            input.form-control(type='text', name='customer[billing][address][pcd]', value='#{customer.billing.address.pcd}')
+          .form-group
+            label(for='customer[billing][address][country]')
+              | Country
+              span.require *
+            input.form-control(type='text', name='customer[billing][address][country]', value='#{customer.billing.address.country}')
+
+          .form-group
+            label(for='customer[billing][address][province]')
+              | Region/State
+              span.require
+            input.form-control(type='text', name='customer[billing][address][province]', value='#{customer.billing.address.province}')
+      hr
+      .row
+        .col-md-12
+          .checkbox
+            label
+              input(type='checkbox', name='customer[terms]', checked)
+              | I have read and agree to the
+              a(title='Privacy Policy', href='#')  Privacy Policy
+          .checkbox
+            label
+              input(type='checkbox', name='customer[newsletter]', checked)
+              | I wish to subscribe to the #{shop.name} newsletter.
+            button#button-payment-address.btn.btn-primary.pull-right(type='submit') Continue
+            strong
+              span.response-message
+block script
+  script(src='/themes/classic/scripts/form.js', type='text/javascript')
+  script(src='/js/custom/states-choices.js', type='text/javascript')
+
+

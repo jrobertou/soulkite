@@ -1,0 +1,35 @@
+extend ../layout
+block content
+  .main
+    .container
+      ul.breadcrumb
+        li
+          a(href='/') Home
+        li.active Checkout
+      .row.margin-bottom-40
+        .col-md-12.col-sm-12
+          h1 Checkout
+          #checkout-page.panel-group.checkout-page
+            #checkout.panel.panel-default
+              .panel-heading
+                h2.panel-title
+                  a Step 1: Checkout Options
+              block step1
+
+            #payment-address.panel.panel-default
+              .panel-heading
+                h2.panel-title
+                  a Step 2: Delivery & Billing Details
+              block step2
+
+            #shipping-method.panel.panel-default
+              .panel-heading
+                h2.panel-title
+                  a Step 3: Delivery Method
+              block step3
+            
+            #confirm.panel.panel-default
+              .panel-heading
+                h2.panel-title
+                  a Step 4: Confirm Order
+              block step4

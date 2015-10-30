@@ -1,0 +1,16 @@
+extend layout
+block step1  
+  .panel-body.row
+    .col-md-6.col-sm-6.text-center
+      h3 Returning Customer
+      p I am a returning customer.
+      p
+        if customer
+          a.btn.btn-primary(href="/checkout/step/2") Continue As #{customer.name.first}
+        else
+          a.btn.btn-primary(href="/login?checkout=true") Login
+    .col-md-6.col-sm-6.text-center
+      h3 New Customer
+      p I never order in your shop:
+      p
+        a.btn.btn-primary(href="/signup?checkout=true") Create Your Account

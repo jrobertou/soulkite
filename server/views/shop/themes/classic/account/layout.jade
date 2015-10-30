@@ -1,0 +1,24 @@
+extend ../layout
+block content
+	.main
+		.container
+			ul.breadcrumb
+				li
+					a(href='/') Home
+				li.active Sign Up
+			//- BEGIN SIDEBAR & CONTENT
+			.row.margin-bottom-40
+				//- BEGIN SIDEBAR
+				//-.sidebar.col-md-3.col-sm-3
+					ul.list-group.margin-bottom-25.sidebar-menu
+						li.list-group-item.clearfix
+							a(href='/login')
+								i.fa.fa-angle-right
+								| Login/Register
+						li.list-group-item.clearfix
+							a(href='/myaccount')
+								i.fa.fa-angle-right
+								| My account
+				.col-md-2.col-sm-2
+				.col-md-10.col-sm-10
+					block subcontent

@@ -1,0 +1,53 @@
+extends layout
+
+block content
+
+  header
+    div.row   
+
+      div.large-12.columns.text-center
+        h1 Lancez votre 
+          b boutique en ligne 
+          | en 3 clics.
+
+      div.large-12.columns.text-center.video-block
+        a(href="#", data-reveal-id="modal-video")
+          i.fa.fa-play-circle-o
+          //iframe(src='//player.vimeo.com/video/44405353',width='600',height='340',frameborder='0',webkitallowfullscreen='',mozallowfullscreen='',allowfullscreen='')
+
+      div.large-12.columns.text-center
+        a(href="#").large.button Commencer à vendre dès maintenant gratuitement !
+          
+
+
+  section.content
+
+    div.row
+      div.large-4.columns
+        h2 <i class="fa fa-tachometer"></i> Lorem ipsum
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+      div.large-4.columns
+        h2 <i class="fa fa-tachometer"></i> Lorem ipsum
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+      div.large-4.columns
+        h2 <i class="fa fa-tachometer"></i> Lorem ipsum
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+      div.large-12.columns
+          a(href="#").large.button.expand Essayer Mon eBoutique.fr gratuitement
+  footer
+    div.row
+      ul
+        li 
+          a(href="#") À propos
+        li 
+          a(href="#") Visite guidée
+        li 
+          a(href="#") Tarifs
+        li.right 
+          a(href="#") CGU
+        li.right 
+          a(href="#") Vie privée
+
+
+  #modal-video.reveal-modal.modal-video(data-reveal='')
+    iframe(src='//player.vimeo.com/video/44405353',width='924',height='520',frameborder='0',webkitallowfullscreen='',mozallowfullscreen='',allowfullscreen='')

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  .main
+    .container
+      // BEGIN SIDEBAR & CONTENT
+      .row.margin-bottom-40
+        // BEGIN CONTENT
+        .col-md-12.col-sm-12
+          .content-page.page-404
+            .number
+              | 404
+            .details
+              h3 Oops!  You're lost.
+              p
+                | We can not find the page you're looking for.
+                br
+                a.link(href='index.html') Return home
+                | or try the search bar below.
+        // END CONTENT
+      // END SIDEBAR & CONTENT

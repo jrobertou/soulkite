@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  .main
+    .container
+      // BEGIN SALE PRODUCT & NEW ARRIVALS
+      .row.margin-bottom-40
+        // BEGIN SALE PRODUCT
+        .col-md-12.sale-product
+          h2 Featured
+          .bxslider-wrapper
+            ul.bxslider(data-slides-phone='1', data-slides-tablet='2', data-slides-desktop='5', data-slide-margin='15')
+              each product in products
+                include product_tpl_slider
+        // END SALE PRODUCT
+      // END SALE PRODUCT & NEW ARRIVALS

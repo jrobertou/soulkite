@@ -1,0 +1,31 @@
+extend layout
+block content
+  h1 #{title} 
+  if cart
+    table.table.table-hover
+      thead
+        th Name
+        th Price
+        th Quantity
+        th Remove
+      tbody
+        each product in cart.products
+          tr
+            td  
+              a(href='/product/#{product.slug}') #{product.name}
+            td #{product.price} €
+            td 
+              input(type="text",value=product.quantity)
+            td
+              a(href='/cart/remove/#{product.id}') 
+                i.fa.fa-times
+    .pull-right
+      if cart.total
+        h4 Total: #{cart.total} €
+      if customer
+        a(href="/order/delivery").button Continue As #{customer.name.first} #{customer.name.last} 
+      else
+        a(href="/login?checkout=true").button J'ai un compte
+        a(href="/signup?checkout=true").button Je suis nouveau
+  else
+    p Votre panier est vide

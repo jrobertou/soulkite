@@ -1,0 +1,15 @@
+.collapse.navbar-collapse.mega-menu
+  ul.nav.navbar-nav
+    each cat in shop.categories
+      link = "/category/"+cat.slug
+      li.dropdown
+        a.dropdown-toggle.disabled(data-toggle='dropdown', data-delay='0', data-close-others='false', data-target='product-list.html', href=link)
+          | #{cat.name}
+          i.fa.fa-angle-down
+        if cat.childs.length
+          ul.dropdown-menu
+            each c in cat.childs
+              link = "/category/"+c.slug
+              li.dropdown-submenu
+                a(href=link)
+                  | #{c.name}

@@ -1,0 +1,104 @@
+extends layout
+block subcontent
+	div.setting-group.user-setting.form
+		div.row
+			div.large-12.columns
+				h3 Informations personnelles
+				div.row
+					div.large-3.columns.align-right
+						p.bold Nom :
+					div.large-9.columns
+						p #{user.name.first} #{user.name.last}
+				div.row
+					div.large-3.columns.align-right
+						p.bold Email :
+					div.large-9.columns
+						p #{user.email}
+		div.row
+			div.large-12.columns
+				h3 Informations du magasin
+				div.row
+					div.large-3.columns.align-right
+						p.bold Nom du magasin :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{user.shop.name}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									input.input-field(type='text', name='name', value="#{user.shop.name}")
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Thème du magasin :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{user.shop.theme}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									select(name='theme').input-field
+										option(value='classic') Classic
+										option(value='minimalist') Minimalist
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Langage du magasin :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{__(user.shop.language)}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									select(name='language').input-field
+										option(value='fr', selected=(user.shop.language=='fr'?true:false)) Français
+										option(value='en', selected=(user.shop.language=='en'?true:false)) Anglais
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+
+				div.row
+					div.large-3.columns.align-right
+						p.bold Monnaie du magasin :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{__(user.shop.currency)}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									select(name='currency').input-field
+										option(value='EUR', selected=(user.shop.currency=='EUR'?true:false)) EUR
+										option(value='USD', selected=(user.shop.currency=='USD'?true:false)) USD
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Compte de paiement paypal :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{user.shop.paypal_email}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									input.input-field(type='text', name='paypal_email', value="#{user.shop.paypal_email}")
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")
+				div.row
+					div.large-3.columns.align-right
+						p.bold Sous-domaine :
+					div.large-9.columns
+						p #{user.shop.url}
+
+				div.row
+					div.large-3.columns.align-right
+						p.bold Nom de domaine personnalisé :
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							p(data-type='input') #{user.shop.custom_domain}
+								i.fa.fa-pencil
+							.row.true-input.hide
+								.large-9.columns
+									input.input-field(type='text', name='custom_domain', value="#{user.shop.custom_domain}")
+								.large-3.columns
+									button.fa.fa-floppy-o.fa-lg(type="submit")

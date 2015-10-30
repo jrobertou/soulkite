@@ -1,0 +1,18 @@
+extend layout
+block content
+	h1 Connexion
+	p.lead Se connecter à mon compte
+	url = checkoutProcess?"/login?checkout=true":"/login"
+	form(action="#{url}", method="post")
+		fieldset
+			if err
+				span.response-message.error #{err}
+			.control-group
+				label(for="email") Email
+				input(type="text", name="email", placeholder="Email")
+				label(for="password") Password
+				input(type="password", name="password", placeholder="Password")
+			.control-group
+				button.btn(type="submit") Log In
+			url2 = checkoutProcess?"/signup?checkout=true":"/signup"
+			a(href="#{url2}") S'inscrire

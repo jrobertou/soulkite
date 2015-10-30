@@ -1,0 +1,113 @@
+extend layout
+block content
+	.row.apropos
+		.large-12.columns
+			h1 À Propos
+			
+	if (shop.custom_settings.company_promotion)
+		.row
+			.large-12.columns
+				p !{shop.custom_settings.company_promotion}
+	.row
+		.large-6.columns.contact-block
+			form(data-type="classic-form", method='post', action='/contact', data-abide='abide', novalidate='novalidate')
+				if err
+					.row
+						.large-12.columns
+							p.error #{err}
+				if success
+					.row
+						.large-12.columns
+							p.success #{success}
+				.row
+					.large-6.columns
+						label(for='firstname') Prénom
+						input#firstname(type='text', name='exp[firstname]', placeholder='Marc')
+					.large-6.columns
+						label(for='lastname') Nom
+						input#lastname(type='text', name='exp[lastname]', placeholder='Delatour')
+				.row
+					.large-6.columns
+						label(for='email') Email
+						input#email(type='email', name='exp[email]', placeholder='jeremy@yshop.com')
+					.large-6.columns
+						label(for='phone') Téléphone
+						input#phone(type='tel', name='exp[phone_number]', placeholder='+335 56 64 09 09')
+				.row
+					.large-12.columns
+						.row.collapse
+							label(for='subject') Sujet
+							select#subject.medium(name='exp[subject]')
+								option(value='commercial') Question commercial
+								option(value='Remarque') Remarque
+								option(value='Apres vente') Après vente
+								option(value='Autre') Autre 
+				.row
+					.large-12.columns
+						label(for='message') Votre message
+						textarea#message(name='exp[message]', placeholder='Laisser votre message ici.')
+				.row
+					.large-12.columns
+						span.response-message.samll.success.hide
+				.row
+					.large-12.columns
+						button.medium.button.green(type='submit') Envoyer
+
+		.large-6.columns
+			.row
+				.large-4.columns
+					p #{shop.name}
+
+				.large-8.columns
+					if shop.custom_settings.company_details || shop.custom_settings.company_address || shop.custom_settings.company_phone_number
+						p.align-right
+							if shop.custom_settings.company_details
+								| #{shop.custom_settings.company_details}
+								br 
+							if shop.custom_settings.company_address
+								| #{shop.custom_settings.company_address}
+								br 
+							if shop.custom_settings.company_phone_number
+								| #{shop.custom_settings.company_phone_number}
+								br 
+			if shop.custom_settings.map_showing && shop.custom_settings.map_showing == "true" && shop.custom_settings.company_address && shop.custom_settings.company_address != ""
+				.row
+					.large-12.columns
+						iframe(width='100%', height='450', frameborder='1', scrolling='no', marginheight='0', marginwidth='0', src='https://maps.google.com/maps?f=q&source=s_q&hl=fr&q='+encodeURIComponent(shop.custom_settings.company_address)+'&iwloc=near&output=embed')
+
+block script
+	script(type='text/javascript').
+		(function(){
+			$('form[data-type="classic-form"]').on('submit', function(e) {
+				e.preventDefault();
+				var $responseMessage = $('.response-message')
+				$form = $(this);
+				var endRequest = function(message){
+					$responseMessage.html(message);
+				};
+				$form.find('.response-message').removeClass('error');
+				$responseMessage.html('Envoi en cours...');
+				$responseMessage.css('display', 'block');
+
+				$.ajax({
+					type: $(this).attr('method'),
+					url: $(this).attr('action'),
+					data: $(this).serialize(),
+					dataType: 'json',
+					success: function(data) {
+					if(data.success) {
+						$responseMessage.addClass('success');
+					}
+					else {
+						$responseMessage.addClass('error');
+					}
+					endRequest(data.message);
+					},
+					error: function(data) {
+						$responseMessage.addClass('error');
+						endRequest('Une erreur est survenue, veuillez contacter le support.');
+					}
+				});
+				return false;
+			});
+		})();

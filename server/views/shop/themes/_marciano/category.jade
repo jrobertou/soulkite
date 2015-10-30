@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .main
+    .container
+      ul.breadcrumb
+        li
+          a(href='index.html') Home
+        li
+          a(href='') Store
+        li.active= category.name
+
+      //- BEGIN CONTENT
+      .row.margin-bottom-40
+        .col-md-12.col-sm-12
+
+          h2= category.name
+          
+          //- BEGIN PRODUCT LIST
+          .row.product-list
+            each product in products
+              include product_tpl
+
+          //- BEGIN PAGINATOR
+          .row
+            include pagination

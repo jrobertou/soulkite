@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    title MoneBoutique.fr - Accueil
+    link(href="/css/website/website.min.css", rel="stylesheet")
+  body(class=bodyclass)
+    
+    nav
+      div.row
+        div.large-12.columns
+          ul.nav
+            li.logo 
+              a(href="/") Mon eBoutique
+            li 
+              a(href="/votre-boutique-en-ligne") Visite guidée
+            li 
+              a(href="/tarifs-boutique-en-ligne") Tarifs
+            li.right 
+              a(href="/creer-son-ecommerce").button Créer sa boutique
+            li.right 
+              a(href="/connexion") Se connecter 
+
+    block content
+
+    script(type='text/javascript', src='/js/libs/jquery-1.10.2.min.js')
+    script(type='text/javascript', src="/js/libs/foundation.min.js")
+    script(type='text/javascript', src="/js/libs/foundation.reveal.js")
+    script(type='text/javascript', src='/js/custom/helper-forms.js')
+    script(type='text/javascript', src='/js/website/website.js')
+
+    block script

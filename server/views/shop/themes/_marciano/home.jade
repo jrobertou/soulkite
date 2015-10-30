@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  .main
+    .container(style="padding:0px")
+      img(src="http://cl.ly/image/1g0H333E0y08/1.png", width=940)
+      img(src="http://cl.ly/image/3C1L190U082r/2.png", width=940)
+      //-ul.breadcrumb
+        li
+          a(href='index.html') Home
+        li.active Featured products
+
+      // BEGIN SALE PRODUCT & NEW ARRIVALS
+      //-.row.margin-bottom-40
+        // BEGIN SALE PRODUCT
+        .col-md-12.sale-product
+          h2 Featured products
+          
+          //- BEGIN PRODUCT LIST
+          .row.product-list
+            each product in products
+              include product_tpl

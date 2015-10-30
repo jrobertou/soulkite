@@ -1,0 +1,21 @@
+extends layout
+block subcontent
+	div.setting-group.shop-setting.form
+		div.row
+			div.large-12.columns
+				h3 Général:
+				div.row
+					div.large-3.columns.align-right
+						p.bold Affichage de la banière : 
+					div.large-9.columns
+						form(method='post', action='/admin/custom/settings', data-type="automatic-one-field-form")
+							val = ((user.shop.custom_settings.banner_showing && user.shop.custom_settings.banner_showing == "true") ? "true": "false")
+							input.hiden-real-value(type="hidden" name="banner_showing" value=val)
+							div.onoffswitch
+								if val == "true"
+									input.onoffswitch-checkbox.form-submiter(id='banner_showingSwitch', type='checkbox', name='banner_showingSwitch', checked="checked")
+								else
+									input.onoffswitch-checkbox.form-submiter(id='banner_showingSwitch', type='checkbox', name='banner_showingSwitch')
+								label.onoffswitch-label(for="banner_showingSwitch")
+										div.onoffswitch-inner
+										div.onoffswitch-switch

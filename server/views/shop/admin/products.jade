@@ -1,0 +1,108 @@
+extends layout
+
+block content
+
+  h1 Produits
+    | 
+    a.button.small.right(href="/admin/products/add", data-pjax)
+      i.fa.fa-plus
+      |  Nouveau produit
+
+  if products.length>0
+    | Ordonner par:  
+    a.button.dropdown.small.radius(href='#', data-dropdown='drop1') Choisir...
+    ul#drop1.f-dropdown(data-dropdown-content='')
+      li
+        a(href="/admin/products/filter/price") Prix
+      li
+        a(href="/admin/products/filter/stock") Stock
+      li
+        a(href="/admin/products/filter/category") Categorie
+      li
+        a(href="/admin/products/filter/category") À la une
+
+    div#grouped_action(style="display:none;margin-left: 12px;")
+      a.button.dropdown.small.radius(href='#', data-dropdown='dropdown_action') Action groupée...
+      ul#dropdown_action.f-dropdown(data-dropdown-content='')
+        li
+          a(href="/admin/products/filter/price") Rupture de stock
+        li
+          a(href="/admin/products/filter/stock") Supprimer
+
+    //-form(method='post', action='/admin/products/groupedaction')
+      div.top-table-actions.hide
+        select(name='action')
+          option(disabled="disabled") Action groupée...
+          option(value="stockToZero") Rupture de stock
+          option(value="delete") Supprimer
+        | 
+        input.button.small(type="submit" value="Appliquer")
+
+  if products.length>0
+    table.listing
+      thead
+        tr
+          th
+            //-input(type="checkbox",data-action="checkall")
+            .square
+              input(type="checkbox", id="checkall", data-action="checkall")
+              label(for="checkall")
+          th Nom du produit
+          th Prix
+          th Stock
+          th Catégorie
+          th Variantes
+          th À la une?
+          th
+      tbody
+        i = 0;
+        each product in products
+          isSale = product.variants.regular_price_min != product.variants.price_min
+          tr
+            td.checkbox
+              //-input(type="checkbox",name="idprod[#{i++}]",value=product._id,class="checkbox")
+              .square
+                input(type="checkbox", value="", id="square_"+product._id, name="product_ids["+product._id+"]").checkbox
+                label(for="square_"+product._id)
+            td
+              url = '/admin/products/edit/'+product._id;
+              imgurl =  product.thumbnail && product.thumbnail.s200 && product.thumbnail.s200.path ? S3url+product.thumbnail.s200.path : "http://placehold.it/80x80";
+              div.thumbnail 
+                a(href=url, data-pjax) 
+                  img(src=imgurl, alt="")
+              a(href=url, data-pjax) #{product.name}
+            td 
+              = __displayPrice(user.shop.currency, product.variants.price_min)  
+              if isSale
+                br
+                s= __displayPrice(user.shop.currency, product.variants.regular_price_min)
+            td #{product.variants.stock_max}
+            td
+              if product.cat_id == -1
+                | Non classé
+              else 
+                if categories && categories[product.cat_id]
+                  | #{categories[product.cat_id].name}
+            td
+              if product.variants.options && product.variants.options.length
+                each v in product.variants.options
+                  | <b>#{v.name}</b>: #{__displayListing(v.list)}
+                  br
+              else
+                | Aucune variante
+            td
+              form(method='post', action='/admin/product/maj-featured', data-type="automatic-one-field-form")
+                val = ( product.featured== "true" ? "true": "false")
+                input.hiden-real-value(type="hidden" name="featured" value=val)
+                input(type="hidden" name="_id" value=product._id)
+                div.onoffswitch
+                  input.onoffswitch-checkbox.form-submiter(type="checkbox", checked=product.featured, id="myonoffswitch"+product._id)
+                  label.onoffswitch-label(for="myonoffswitch"+product._id)
+                      div.onoffswitch-inner
+                      div.onoffswitch-switch
+            td
+              a.button.small(href=url, data-pjax) Éditer
+              |  
+              a.button.small(href='/product/'+product.slug, target="_blank") Voir
+  else
+    p Aucun produit

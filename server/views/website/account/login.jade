@@ -1,0 +1,21 @@
+extends ./../layout
+
+block content
+  section.content
+    div.row
+      div.large-12.columns.text-center
+        h1 Se connecter
+        
+        form(method="post", action='/connexion', data-type='login-form')
+          p 
+            b Connectez-vous 
+            | et accédez à votre tableau de bord.
+          span.response-message.hide
+          .row
+            .large-7.columns.no-pr
+              input#shop-url(type='text', name='shop[url]', placeholder="Adresse de votre boutique")
+            .large-5.columns.no-pl
+              span.postfix.radius .#{siteurl}
+          //-input(type="text", name="email", placeholder="Adresse email")
+          //-input(type="password", name="password", placeholder="Mot de passe")
+          button(type="submit").large.button.expand Accéder à mon tableau de bord !

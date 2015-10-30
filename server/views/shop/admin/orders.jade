@@ -1,0 +1,40 @@
+extends layout
+block content
+
+	h1 Commandes
+
+	if orders.length>0
+		table.listing
+			thead
+				tr
+					th
+					th Client
+					th Nb produit
+					th Shipping 
+					th Total (HT)
+					th Total (TTC)
+					th Date de la commande
+					th Status
+					th Actions
+			tbody
+				i = 0;
+				each order in orders
+					tr
+						td.checkbox
+							input(type="checkbox",name="idorder[#{i++}]",value=order._id,class="checkbox")
+						td #{order.customer.email}
+								div.small #{order.customer.name.first} #{order.customer.name.first}
+						td #{order.cart.count}
+						td #{order.shippingRate.name}
+							div.small #{APIcountries.getName(order.customer.shipping.address.country)} #{order.customer.shipping.address.province}
+						td 
+							= __displayPrice(user.shop.currency, order.ht)
+						td
+							= __displayPrice(user.shop.currency, order.ttc)
+						td #{order.date.toDateString()}
+							div.small #{order.date.toLocaleTimeString()}
+						td #{order.status}
+						td
+							a(href='/admin/order/#{order._id}') Détails
+	else
+		p Aucune commande

@@ -1,0 +1,48 @@
+extend ../layout
+block content
+  .main
+    .container
+      .panel-body.row
+        .col-md-12.clearfix
+          h2 Your order has been ordered with success 
+            a#button-confirm.btn.btn-primary.pull-right(href='/') Back to home
+          
+      .panel-body.row.recap-order-over-page.checkout-page
+        .col-md-12
+          .table-wrapper-responsive
+            table
+              tbody
+                tr
+                  th.checkout-description Description
+                  th.checkout-quantity Quantity
+                  th.checkout-price Price
+                  th.checkout-total Total
+                each product in order.cart.products
+                  tr
+                    td.checkout-description
+                      h3
+                        strong= product.name
+                      if product.variant
+                        p
+                          each v in product.variant.data
+                            | #{v.name}: #{v.value}
+                            br
+                    td.checkout-quantity 1
+                    td.checkout-price
+                      strong
+                        span #{__displayPrice(shop.currency, product.price)}
+                    td.checkout-total
+                      strong
+                        span #{__displayPrice(shop.currency, product.price*product.quantity)}
+          .checkout-total-block
+            ul
+              each tax in order.taxes
+                customClass = tax.important?'':'small'
+                li(class=customClass)
+                  em !{tax.name}  
+                    if tax.percent
+                      i.small (#{tax.percent}%)
+                  strong.price
+                    span #{__displayPrice(shop.currency, tax.value)}
+          .clearfix
+          a#button-confirm.btn.btn-primary.pull-right(href='/') Back to home

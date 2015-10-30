@@ -1,0 +1,47 @@
+extends ./../layout
+
+block content
+	section.content
+		div.row
+			div.large-12.columns.text-center
+
+				h1 Créer sa boutique
+				//p.lead A page for a description of the company.
+				p 
+					b Créer un compte. 
+					| Entrez les premiers paramètres de votre boutique et saisisez une adresse e-mail et un mot de passe qui vous sera utile pour vous connecter au tableau de bord de celle-ci.
+
+				span.response-message.hide
+
+				form(method='post', action='/creer-son-ecommerce', data-type='classic-form', data-animate-to-message, data-hide-form-on-success)
+
+					input#shop-name(type='text', name='shop[name]', placeholder="Nom de votre boutique")
+
+					.row
+						.large-7.columns.no-pr
+							input#shop-url(type='text', name='shop[url]', placeholder="Adresse de votre boutique")
+						.large-5.columns.no-pl
+							span.postfix.radius .#{siteurl}
+
+					//-select(name='shop[theme]')
+						option Thème de votre boutique 
+						option(value='classic') Classic
+						option(value='minimalist') Minimalist
+
+					input(type="hidden", name="shop[theme]", value="classic")
+					input#shop-paypal-email(type='text', name='shop[paypal_email]', placeholder="Adresse e-mail Paypal")
+
+
+					hr
+
+					.row
+						.large-6.columns
+							input#user-lastname(type='text',name='user[name][last]', placeholder="Nom")
+						.large-6.columns
+							input#user-firstname(type='text',name='user[name][first]', placeholder="Prénom")
+					input#user-email(type='text',name='user[email]', placeholder="Adresse e-mail")
+					input#user-password(type='password',name='user[password]', placeholder="Mot de passe")
+
+					p En cliquant sur le bouton ci-dessous pour créer votre boutique, vous acceptez les conditions générales de Mon eBoutique.
+
+					button(type='submit').button.large.expand Enregistrer et créer ma boutique

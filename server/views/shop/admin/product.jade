@@ -1,0 +1,170 @@
+extends layout
+
+block content
+	if ( typeof product._id=='undefined' )
+		h1 Nouveau produit
+	else
+		h1 #{product.name}
+
+
+	div#myModal.reveal-modal.tiny(data-reveal)
+		h2 Nom de l'option
+		p
+			input(type="text", name="option")
+		div.right
+			button.secondary(data-reveal-close) Annuler
+			&nbsp; 
+			button(data-action="submit-option") Valider
+		a.close-reveal-modal &#215;
+
+	div.alert-box.alert.response-message
+
+	url = typeof product._id=='undefined' ? "/admin/products/add" : "/admin/products/edit/"+product._id;
+	form(method="post", action=url, data-type="classic-form", data-animate-to-message)
+		.row
+			.large-12.columns
+
+				.bloc
+
+					h3 Informations générales
+
+					.row
+						.large-4.columns
+							label Photos produit
+							.drop-zone.dropzone#my-awesome-dropzone
+
+								if product && product.images && product.images.length
+									each image in product.images
+										div.dz-preview.dz-image-preview
+											div.dz-details
+												img(data-dz-thumbnail="",alt="",src=S3url+image.files.s200.path)
+											div.dz-progress
+												span(data-dz-uploadprogress="",style="width: 100%;").dz-upload
+											div.dz-success-mark
+												span ✔
+											div.dz-error-mark
+												span ✘
+											div.dz-error-message
+												span(data-dz-errormessage="")
+											a(href="javascript:undefined;", data-dz-remove="").dz-remove Remove file
+											input(type="hidden", name="product[img_id][]", value=image._id)
+								else
+									.drop-icon
+										i.fa.fa-plus
+										| Cliquez-ici ou glissez-déposez pour télécharger des photos
+
+						.large-8.columns
+							.row
+								.large-12.columns
+									label Nom du produit
+									input(type='text',name='product[name]', value=product.name)
+
+								.large-12.columns
+									//label Prix du produit (€)
+									//input(type='text',name='product[price]',value=product.price)
+
+									//label Stock
+									//input(type='text',name='product[stock]',value=product.stock)
+
+									label Description du produit
+									textarea(type='text',name='product[description]') #{product.description}
+
+									.row
+										.large-10.columns
+											label Catégorie
+											select(name="product[cat_id]")
+												each cat in categories
+													option(value=cat._id, selected=(cat._id==product.cat_id)) #{cat.name}
+														if cat.childs.length
+															each c in cat.childs
+																option(value=c._id, selected=(c._id==product.cat_id)) — #{c.name}
+
+										.large-2.columns
+											label Produit à la une ?
+											div.onoffswitch
+												input.onoffswitch-checkbox(type="checkbox", name="product[featured]", checked=product.featured, id="myonoffswitch"+product._id)
+												label.onoffswitch-label(for="myonoffswitch"+product._id)
+														div.onoffswitch-inner
+														div.onoffswitch-switch
+
+				
+				
+					br
+					//-a(data-action="addOption").right.button.small + Ajouter une option
+					h3 Prix et détails
+
+					if product.variants && product.variants.options && product.variants.options.length
+						each opt in product.variants.options
+							input(type="hidden", name="options["+opt.slug+"]", value=opt.name)
+
+					table.variants#variants
+						thead
+							tr
+								th SKU
+								th Prix de vente  
+									a(data-tooltip, title="Le prix de vente est le prix affiché sur votre boutique.").tip-top ?
+								th Prix régulier  
+									a(data-tooltip, title="Le prix régulier est utile si vous souhaitez créer une promotion sur le produit.").tip-top ?
+								th Stock
+								th Poids
+								th Dimensions
+								if product.variants && product.variants.options && product.variants.options.length
+									each opt in product.variants.options
+										th 
+											a= opt.name
+								th#addOption
+									a(data-action="addOption").button.small +
+						tbody
+							if typeof product.variants !== 'undefined' && typeof product.variants.data !== 'undefined' && product.variants.data
+								each variant, key in product.variants.data
+									tr(data-variant-order=variant.order)
+										td
+											input(type='hidden', name='variant['+variant.order+'][_id]', value=variant._id)
+											input(type='hidden', name='variant['+variant.order+'][order]', value=variant.order)
+											input(type='text', name='variant['+variant.order+'][sku]', value=variant.sku, placeholder="SKU0001")
+										td
+											input(type='text', name='variant['+variant.order+'][price]', value=variant.price, data-copy-to="price") 
+											|  #{user.shop.currency}
+										td
+											input(type='text', name='variant['+variant.order+'][regular_price]', value=variant.regular_price, data-copy-target="price")
+											|  #{user.shop.currency}
+										td
+											input(type='text', name='variant['+variant.order+'][stock]', value=variant.stock)
+										td
+											input(type='text', name='variant['+variant.order+'][weight]', value=variant.weight, placeholder="0.00")
+										td
+											input(type='text', name='variant['+variant.order+'][dimensions]', value=variant.dimensions, placeholder="0x0x0")
+
+										if product.variants.options && product.variants.options.length
+											each opt in product.variants.options
+												td
+													input(type='text',name='variant['+variant.order+']['+opt.slug+']',value=variant[opt.slug])
+
+							else
+								tr(data-variant-order=1)
+									td
+										input(type='hidden', name='variant[1][_id]', value="")
+										input(type='hidden', name='variant[1][order]', value="1")
+										input(type='text', name='variant[1][sku]', value="", placeholder="SKU0001")
+									td
+										input(type='text', name='variant[1][price]', value="", data-copy-to="price")
+										|  #{user.shop.currency}
+									td
+										input(type='text', name='variant[1][regular_price]', value="", data-copy-target="price")
+										|  #{user.shop.currency}
+									td
+										input(type='text', name='variant[1][stock]', value="")
+									td
+										input(type='text', name='variant[1][weight]', value="", placeholder="0.00")
+									td
+										input(type='text', name='variant[1][dimensions]', value="", placeholder="0x0x0")
+						
+					a(data-action="addVariant").button.small + Ajouter une variante   
+					
+
+				.row
+					.large-6.columns
+						input(type='submit',class='button small',value=(product._id==0?'Ajouter':'Enregistrer'))
+					if product._id!=0
+						.large-6.columns
+							a.button.small.alert.right(href='/admin/products/delete/#{product.id}') Supprimer

@@ -1,0 +1,112 @@
+extends layout
+
+block content
+
+	h1 Tableau de bord
+
+	.row
+
+		.large-6.columns
+			.dashboardBloc
+				.bloc-header 
+					i.fa.fa-eye
+					h3 Vues
+				.bloc-content
+					table 
+						thead
+							tr
+								th Produit
+								th Vues
+						tbody
+							tr
+								td
+									a Nom du Produit
+								td 123
+
+		.large-6.columns
+			.dashboardBloc
+				.bloc-header 
+					i.fa.fa-book
+					h3 Commandes
+				.bloc-content
+					table 
+						thead
+							tr
+								th Produit
+								th Total
+						tbody
+							tr
+								td
+									a Nom du Produit
+								td 123 €
+							tr
+								td
+									a Nom du Produit 2
+								td 12 €
+
+		.large-6.columns
+			.dashboardBloc
+				.bloc-header 
+					i.fa.fa-truck
+					h3 Rupture de stock
+				.bloc-content
+					table 
+						thead
+							tr
+								th Produit
+								th Vues
+						tbody
+							tr
+								td
+									a Nom du Produit
+								td 123
+
+		script.
+			$(document).ready(function() {
+				var chart;
+				$('#container').highcharts({
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: ''
+					},
+					colors: ['#3BBEE3'],
+					xAxis: {
+						categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: ''
+						}
+					},
+					tooltip: {
+							headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+							pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+									'<td style="padding:0"><b>{point.y} commandes</b></td></tr>',
+							footerFormat: '</table>',
+							shared: true,
+							useHTML: true
+					},
+					plotOptions: {
+							column: {
+									pointPadding: 0.2,
+									borderWidth: 0
+							}
+					},
+					series: [{
+							name: 'Commandes',
+							data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
+
+					}]
+				});
+			});
+
+		.large-6.columns
+			.dashboardBloc
+				.bloc-header 
+					i.fa.fa-tachometer
+					h3 Statistiques
+				.bloc-content
+					#container

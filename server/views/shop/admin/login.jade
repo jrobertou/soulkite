@@ -1,0 +1,35 @@
+extends layout_login
+
+block content
+
+  div.row
+    div.large-12.columns.text-center
+      h1 Se connecter
+      //p.lead A page for a description of the company.
+      form(method="post", action='/admin/login', data-type='classic-form')
+        span.response-message.hide
+        input(type="text", name="email", placeholder="Adresse email")
+        input(type="password", name="password", placeholder="Mot de passe")
+        button(type="submit").large.button.expand Accéder à mon tableau de bord !
+
+  //-div.row
+    div.large-4.large-centered.columns
+      form(method='post',action='')
+        if (err)
+          div.row
+            div.large-12.columns
+              p #{err}
+        if (user && shop)
+          div.row
+            div.large-12.columns
+              p User: #{user}
+              p Shop: #{shop}
+        div.row
+          div.large-12.columns
+            input(type='text',placeholder='Adresse email',name='email')
+        div.row
+          div.large-12.columns
+            input(type='password',placeholder='Mot de passe',name='password')
+        div.row
+          div.large-12.columns
+            input(type='submit',class="button",value='Connexion')

@@ -1,0 +1,20 @@
+link = "/product/"+product.slug
+url = product.thumbnail && product.thumbnail.s200 && product.thumbnail.s200.path ? S3url+product.thumbnail.s200.path : "http://placehold.it/240x220";
+isSale = product.variants.regular_price_min != product.variants.price_min
+.col-md-4.col-sm-6.col-xs-12
+  .product-item
+    .pi-img-wrapper
+      a(href=link)
+        img.img-responsive(src=url, alt=product.name)
+    h3
+      a(href=link) #{product.name}
+    .pi-price= __displayPrice(shop.currency, product.variants.price_min)
+    //-a.btn.btn-primary.add2cart(href="/cart/add/#{product.id}", addId='#{product.id}')= __('Add to cart')
+    form(data-type="classic-form", method="post", action="/cart/add").add2cart
+      input(type="hidden", name="product[id]", value=product._id)
+      input(type="hidden", name="product[qty]", value="1")
+      if !product.variants.options.length
+        input(type="hidden", name="product[variant_id]", value=Object.keys(product.variants.data)[0])
+      button.btn.btn-primary(type='submit', data-action="add_to_cart")= __('Add to cart')
+    if isSale
+      .sticker.sticker-sale

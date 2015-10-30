@@ -1,0 +1,17 @@
+extend layout
+block step3
+  form(action='/checkout/shippingrate', method='post', role='form')
+    .panel-body.row
+      .col-md-12
+        p Please select the preferred shipping method to use on this order.
+        h4 Flat Rate
+        .radio-list
+          each rate in rates
+            label
+              input(type='radio', name='ship[rate]', value='#{rate._id}')
+              | #{rate.name} - #{__displayPrice(shop.currency, rate.price)} (#{rate.shippingDelay.min} - #{rate.shippingDelay.max} #{__('business days')})
+        .form-group
+          label(for='delivery-comments') Add Comments About Your Order
+          textarea.form-control(rows='8', name='ship[comment]')
+        button.btn.btn-primary.pull-right(type='submit') Continue
+            

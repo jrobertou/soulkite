@@ -1,0 +1,91 @@
+doctype html
+html
+  head
+    title #{shop.name} | #{title}
+
+    //- Fonts
+    link(href='http://fonts.googleapis.com/css?family=Architects+Daughter|Trocchi', rel='stylesheet', type='text/css')
+
+    //- Global styles START
+    link(href='/themes/_marciano/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(href='/themes/_marciano/css/global.min.css', rel='stylesheet', type='text/css')
+
+    script.
+      var meb = {
+        "currency": "#{shop.currency}"
+      }
+
+  body
+    
+    //- BEGIN TOP BAR
+    .pre-header
+      .container
+        .row
+
+          //- BEGIN TOP BAR MENU
+          .col-md-12.col-sm-12.additional-nav
+            ul.list-unstyled.list-inline.pull-right
+              li
+                a(href='/myaccount') My Account
+                if customer && customer.name && customer.name.first
+                  |  (#{customer.name.first})
+              li
+                a(href='/checkout') Checkout
+              li
+                if customer
+                  a(href='/logout') #{__('Log Out')}
+                else
+                  a(href='/login') #{__('Log In')}
+              li 
+                //- BEGIN CART
+                include cartmenu
+
+    //- BEGIN HEADER
+    .header(role='navigation')
+      .container
+        .row
+          .col-lg-12.col-md-12.col-sm-12
+            a.brand(href='/')
+              h1 GEORGES MARCIANO RANCH
+        
+        //- BEGIN NAVIGATION
+        include navigation
+        
+    //- END HEADER
+
+    block content
+
+    //- BEGIN FOOTER
+    .footer
+      .container
+        .row
+          .col-md-3.col-sm-3.text-center Content
+          .col-md-3.col-sm-3.text-center Content
+          .col-md-3.col-sm-3.text-center Content
+          .col-md-3.col-sm-3.text-center Content
+        .row
+          .col-md-12.col-sm-12.text-center Powered by Mon eBoutique.fr
+            
+    script(src='/themes/_marciano/js/marciano.min.js', type='text/javascript')
+
+    //-
+      script(src='/themes/_marciano/js/jquery.min.js', type='text/javascript')
+      script(src='/themes/_marciano/js/bootstrap.min.js', type='text/javascript')
+      script(src='/js/libs/underscore.js', type='text/javascript')
+      script(src='/themes/common/js/helper-forms.js', type='text/javascript')
+      script(src='/themes/common/js/common.js', type='text/javascript')
+
+      script.
+        jQuery(document).ready(function() {
+          //$("[data-toggle='tooltip']").tooltip();
+          $("[data-toggle='dropdown']").dropdown();
+          /*App.init();   
+          App.initBxSlider(); 
+          Index.initLayerSlider();
+          App.initImageZoom();
+          App.initSliderRange();
+          App.initUniform();
+          App.initTouchspin();*/
+        });
+
+    block script

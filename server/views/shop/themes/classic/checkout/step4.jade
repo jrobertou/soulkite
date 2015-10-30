@@ -1,0 +1,46 @@
+extend layout
+block step4
+  .panel-body.row
+    .col-md-12.clearfix
+      .table-wrapper-responsive
+        table
+          tbody
+            tr
+              th.checkout-image Image
+              th.checkout-description Description
+              th.checkout-quantity Quantity
+              th.checkout-price Price
+              th.checkout-total Total
+            each product in cart.products
+              url = product.thumbnail ? S3url+product.thumbnail : "http://placehold.it/240x220";
+              tr
+                td.checkout-image
+                  img(src=url, alt=product.name)
+                td.checkout-description
+                  h3
+                    strong= product.name
+                  if product.variant
+                    p
+                      each v in product.variant.data
+                        | #{v.name}: #{v.value}
+                        br
+                td.checkout-quantity 1
+                td.checkout-price
+                  strong
+                    span #{__displayPrice(shop.currency, product.price)}
+                td.checkout-total
+                  strong
+                    span #{__displayPrice(shop.currency, product.price*product.quantity)}
+      .checkout-total-block
+        ul
+          each tax in taxes
+            customClass = tax.important?'':'small'
+            li(class=customClass)
+              em !{tax.name}  
+                if tax.percent
+                  i.small (#{tax.percent}%)
+              strong.price
+                span #{__displayPrice(shop.currency, tax.value)}
+      .clearfix
+      a#button-confirm.btn.btn-primary.pull-right(href='/checkout/sendorder') Confirm Order
+      a.btn.btn-default.pull-right.margin-right-20(href='/checkout/cancelorder') Cancel

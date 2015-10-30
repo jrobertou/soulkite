@@ -1,0 +1,136 @@
+extends layout
+block subcontent
+	form.form(method='post', action='/admin/settings/shipping/addcountry', data-type="classic-form")
+		span.response-message.hide
+		div.row
+			div.large-6.columns
+				select(name='country')
+					option(value='' disabled='disabled' selected) Choisissez un pays
+					each country in APIcountries.getNames()
+						option(value='#{APIcountries.getCode(country)}') #{country}
+			div.large-6.columns
+				button.button.small(type="submit").large-4.columns
+					i.fa.fa-plus
+					|  Pays de livraison
+	.row
+		.large-12.columns
+				each country in shipping.countries
+						.row
+							.large-2.columns
+								h2 #{APIcountries.getName(country.country_name)}
+								a.button.small.alert(href="/admin/settings/shipping/deletecountry/#{country._id}/#{country.country_name}") Supprimer
+							.large-10.columns
+								table
+									thead
+										tr
+											th Nom  
+												a(data-tooltip, title="Nom de la méthode de livraison affiché aux clients.").tip-top ?
+											th Critère
+												br
+												span.small type
+											th 
+												br
+												span.small minimum  
+												a(data-tooltip, title="Les commandes strictement au dessus de ce critère auront ce mode de livraison proposé.").small.tip-top ?
+											th 
+												br
+												span.small maximum  
+												a(data-tooltip, title="Les commandes en dessous ou égale de ce critère auront ce mode de livraison proposé.").small.tip-top ?
+											th Delai&nbsp;&nbsp;
+												br
+												span.small min  
+												a(data-tooltip, title="Delai de livraison minimum en jour ouvré.").small.tip-top ?
+											th &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												br
+												span.small max  
+												a(data-tooltip, title="Delai de livraison maximum en jour ouvré.").small.tip-top ?
+											th Prix  
+												a(data-tooltip, title="Prix de livraison facturé au client.").tip-top ?
+											th
+									tbody
+										if shipping.rates && shipping.rates[country.country_name]
+											each rate in shipping.rates[country.country_name]
+												tr
+													td #{rate.name}
+													if rate.criteria == 'price'
+														td #{__(rate.criteria)}
+													else
+														td #{__("weight")}
+													td #{__displayPrice(user.shop.currency, rate.rangeMin)}
+													td #{__displayPrice(user.shop.currency, rate.rangeMax)}
+													td #{rate.shippingDelay.min} j
+													td #{rate.shippingDelay.max} j
+													td #{__displayPrice(user.shop.currency, rate.price)}
+													td 
+														a.button.small.alert(href="/admin/settings/shipping/#{country.country_name}/deleterate/#{rate._id}")	Supprimer
+										form(method='post', action='/admin/settings/shipping/#{country.country_name}/addrate', data-type="classic-form")
+											tr.response-message.hide
+											tr
+												td 
+													input(type="text",name="rate[name]",placeholder="name", value="")
+												td
+													select(name='rate[criteria]')
+														option(value='price', selected) Prix
+														//-option(value='weight') Poids
+												td 
+													input(type="text",name="rate[rangeMin]",placeholder="minimum", value="")
+												td
+													input(type="text",name="rate[rangeMax]",placeholder="maximum", value="")
+												td
+													select(name='rate[shippingDelay][min]')
+														option(value='1') 1 j
+														option(value='2') 2 j
+														option(value='3', selected) 3 j
+														option(value='4') 4 j
+														option(value='5') 5 j
+														option(value='6') 6 j
+														option(value='7') 7 j
+														option(value='8') 8 j
+														option(value='9') 9 j
+														option(value='10') 10 j
+														option(value='11') 11 j
+														option(value='12') 12 j
+														option(value='13') 13 j
+														option(value='14') 14 j
+														option(value='15') 15 j
+														option(value='16') 16 j
+														option(value='17') 17 j
+														option(value='18') 18 j
+														option(value='19') 19 j
+														option(value='20') 20 j
+														option(value='21') 21 j
+														option(value='22') 22 j
+														option(value='23') 23 j
+														option(value='24') 24 j
+														option(value='25') 25 j
+												td	
+													select(name='rate[shippingDelay][max]')
+														option(value='1') 1 j
+														option(value='2') 2 j
+														option(value='3') 3 j
+														option(value='4') 4 j
+														option(value='5', selected) 5 j
+														option(value='6') 6 j
+														option(value='7') 7 j
+														option(value='8') 8 j
+														option(value='9') 9 j
+														option(value='10') 10 j
+														option(value='11') 11 j
+														option(value='12') 12 j
+														option(value='13') 13 j
+														option(value='14') 14 j
+														option(value='15') 15 j
+														option(value='16') 16 j
+														option(value='17') 17 j
+														option(value='18') 18 j
+														option(value='19') 19 j
+														option(value='20') 20 j
+														option(value='21') 21 j
+														option(value='22') 22 j
+														option(value='23') 23 j
+														option(value='24') 24 j
+														option(value='25') 25 j
+												td 
+													input(type="text",name="rate[price]",placeholder="prix", value="")
+												td
+													button.button.small(type="submit") Ajouter

@@ -1,0 +1,37 @@
+if typeof cat_master_id !== 'undefined'
+  masterId = cat_master_id
+else if category
+  masterId = category.parentId == '0' ? category._id.toString() : category.parentId;
+else
+  masterId = Object.keys(shop.categories)[0];
+
+.row
+  .col-lg-12.col-md-12.col-sm-12
+    ul.master-meu
+      each cat, key in shop.categories
+        link = "/category/"+cat.slug;
+        activeClass = category && cat._id.toString() == masterId ? 'active' : '';
+          if !key
+            li(class=activeClass)
+              a(href=link)= cat.name
+            li.slash /
+          else
+            li(class=activeClass)
+              a(href=link)= cat.name
+
+if shop.categories[masterId] && shop.categories[masterId].childs && shop.categories[masterId].childs.length
+  .collapse.navbar-collapse.top-menu
+    ul.nav
+      each c in shop.categories[masterId].childs
+        link = "/category/"+c.slug
+        li.dropdown
+          a.dropdown-toggle.disabled(data-toggle='dropdown', data-delay='0', data-close-others='false', data-target='#'+c._id, href=link)= c.name
+          //-if cat.childs.length
+            .dropdown-menu
+              .dropdown-menu-content
+                ul
+                  each c in cat.childs
+                    link = "/category/"+c.slug
+                    li.dropdown-submenu
+                      a(href=link)
+                        | #{c.name}
