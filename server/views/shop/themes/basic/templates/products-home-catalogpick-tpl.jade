@@ -27,12 +27,12 @@ form.col-lg-3.col-md-4.col-sm-6(data-type="classic-form", method="post", action=
     if isSale
       .price-label.old-price 920,00 $
     a(href=link)
-      img(src=url, alt=product.name)
+      img.img-heigth200(src=url, alt=product.name)
       span.tile-overlay
 
     if !product.variants.options.length
       input(type="hidden", name="product[variant_id]", value=Object.keys(product.variants.data)[0])
     .footer
-      a(href=link) #{product.name}
+      a.ellipsis-text(href=link) #{product.name}
       span by SoulKite
       button.btn.btn-primary(type='submit', data-action="add_to_cart")= __('Add to cart')

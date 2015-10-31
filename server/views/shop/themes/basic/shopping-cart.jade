@@ -1,0 +1,121 @@
+extends layout
+
+block content
+  // Shopping Cart
+  section.shopping-cart
+    .container
+      .row
+        // Items List
+        .col-lg-9.col-md-9
+          h2.title Shopping cart
+          table.items-list
+            tr
+              th  
+              th Product name
+              th Product price
+              th Quantity
+              th Total
+            // Item
+            tr.item.first
+              td.thumb
+                a(href='shop-single-item-v1.html')
+                  img(src='/themes/basic/img/catalog/shopping-cart-thumb.jpg', alt='Lorem ipsum')
+              td.name
+                a(href='shop-single-item-v1.html') Wristlet
+              td.price 715,00 $
+              td.qnt-count
+                a.incr-btn(href='#') -
+                input.quantity.form-control(type='text', value='2')
+                a.incr-btn(href='#') +
+              td.total 2715,00 $
+              td.delete
+                i.icon-delete
+            // Item
+            tr.item
+              td.thumb
+                a(href='shop-single-item-v1.html')
+                  img(src='/themes/basic/img/catalog/shopping-cart-thumb.jpg', alt='Lorem ipsum')
+              td.name
+                a(href='shop-single-item-v1.html') Wristlet
+              td.price 715,00 $
+              td.qnt-count
+                a.incr-btn(href='#') -
+                input.quantity.form-control(type='text', value='2')
+                a.incr-btn(href='#') +
+              td.total 2715,00 $
+              td.delete
+                i.icon-delete
+            // Item
+            tr.item
+              td.thumb
+                a(href='shop-single-item-v1.html')
+                  img(src='/themes/basic/img/catalog/shopping-cart-thumb.jpg', alt='Lorem ipsum')
+              td.name
+                a(href='shop-single-item-v1.html') Wristlet
+              td.price 715,00 $
+              td.qnt-count
+                a.incr-btn(href='#') -
+                input.quantity.form-control(type='text', value='2')
+                a.incr-btn(href='#') +
+              td.total 2715,00 $
+              td.delete
+                i.icon-delete
+            // Item
+            tr.item
+              td.thumb
+                a(href='shop-single-item-v1.html')
+                  img(src='/themes/basic/img/catalog/shopping-cart-thumb.jpg', alt='Lorem ipsum')
+              td.name
+                a(href='shop-single-item-v1.html') Wristlet
+              td.price 715,00 $
+              td.qnt-count
+                a.incr-btn(href='#') -
+                input.quantity.form-control(type='text', value='2')
+                a.incr-btn(href='#') +
+              td.total 2715,00 $
+              td.delete
+                i.icon-delete
+        // Sidebar
+        .col-lg-3.col-md-3
+          h3 Cart totals
+          form.cart-sidebar(method='post')
+            .cart-totals
+              table
+                tr
+                  td Cart subtotal
+                  td.total.align-r 2715,00 $
+                tr.devider
+                  td Shipping
+                  td.align-r Free shipping
+                tr
+                  td Order total
+                  td.total.align-r 2715,00 $
+              h3 Have a coupon?
+              .coupon
+                .form-group
+                  label.sr-only(for='coupon-code') Enter coupon code
+                  input#coupon-code.form-control(type='text', name='coupon-code', placeholder='Enter coupon code')
+                input.btn.btn-primary.btn-sm.btn-block(type='submit', name='apply-coupon', value='Apply coupon')
+              input.btn.btn-primary.btn-sm.btn-block(type='submit', name='update-cart', value='Update shopping cart')
+              input.btn.btn-black.btn-block(type='submit', name='to-checkout', value='Proceed to checkout')
+            a.panel-toggle(href='#calc-shipping')
+              h3 Calculate shipping
+            #calc-shipping.hidden-panel.calc-shipping
+              .form-group
+                .select-style
+                  select(name='country')
+                    option Australia
+                    option Belgium
+                    option Germany
+                    option United Kingdom
+                    option Switzerland
+                    option USA
+              .form-group
+                label.sr-only(for='state') State/ province
+                input#state.form-control(type='text', name='state', placeholder='State/ province')
+              .form-group
+                label.sr-only(for='postcode') Postcode/ ZIP
+                input#postcode.form-control(type='text', name='postcode', placeholder='Postcode/ ZIP')
+              input.btn.btn-primary.btn-sm.btn-block(type='submit', name='update-totals', value='Update totals')
+  // Shopping Cart Close
+

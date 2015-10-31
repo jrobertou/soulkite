@@ -66,7 +66,7 @@ module.exports = function(grunt) {
     less:{
       limo: {
         files: {
-          "./public/themes/limo/styles.css": "./public/themes/limo/less/styles.less"
+          "./public/themes/basic/css/styles.css": ["./public/themes/limo/less/styles.less", "./public/themes/basic/css/colors/color-default.less", "./public/themes/basic/css/helper.less"]
         }
       }
     },

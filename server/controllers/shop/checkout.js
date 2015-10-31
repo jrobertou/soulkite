@@ -32,7 +32,8 @@ module.exports = {
 				cart: req.session.cart ? req.session.cart: null,
 				customer: req.session.customer
 			};
-		res.render(page, rendering);
+		//res.render(page, rendering);
+		res.render(fn.shopViewsPath(shop.theme, 'checkout'), rendering);
 	},
 
 	getStep: function (req, res) {

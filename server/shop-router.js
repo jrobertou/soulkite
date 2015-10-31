@@ -32,6 +32,10 @@ module.exports = function(app) {
 	app.get('/contact', main.shopCommonTasks, contact.getContact);
 	app.post('/contact', main.shopCommonTasks, contact.postContact);
 
+
+	app.get('/lessons/team', main.shopCommonTasks, contact.getTeam);
+	app.get('/blog', main.shopCommonTasks, contact.getBlog);
+
 	// Category
 	app.get('/category/:seo', main.shopCommonTasks, category.getBySEO);
 	app.get('/category/:seo/:page', main.shopCommonTasks, category.getBySEO);
@@ -61,7 +65,8 @@ module.exports = function(app) {
 	app.get('/shopping-cart', main.shopCommonTasks, cart.getCart);
 
 	// Checkout
-	app.get('/checkout', main.shopCommonTasks, cart.isCartExist, checkout.getCheckout);
+	app.get('/checkout', checkout.getCheckout);
+	//app.get('/checkout', main.shopCommonTasks, cart.isCartExist, checkout.getCheckout);
 	app.get('/checkout/step/:step', main.shopCommonTasks, account.ensureAuthenticated, checkout.isOrderExist, checkout.getStep);
 	app.post('/checkout/shippingrate', main.shopCommonTasks, account.ensureAuthenticated, checkout.isOrderExist, checkout.postCheckoutShippingRate);
 	app.get('/checkout/sendorder', main.shopCommonTasks, account.ensureAuthenticated, checkout.isOrderExist, checkout.sendCheckoutOrder);

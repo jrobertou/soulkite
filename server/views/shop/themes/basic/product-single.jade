@@ -7,7 +7,7 @@ block content
       a(href='index.html') Home
     li
       a(href='shop-filters-left-3cols.html') Shop - filters left 3 cols
-    li Shop - single item v1
+    li Shop - #{product.name}
   // Breadcrumbs Close
   // Shopping Cart Message
   section.cart-message
@@ -16,50 +16,60 @@ block content
     a.btn-outlined-invert.btn-black.btn-sm(href='shopping-cart.html') View cart
   // Shopping Cart Message Close
   // Catalog Single Item
+  url = product.thumbnail ? S3url+product.thumbnail.s400.path : "http://placehold.it/240x220";
+  url_original = product.thumbnail ? S3url+product.thumbnail.original.path : "http://placehold.it/240x220";
+  isSale = product.variants.regular_price_min != product.variants.price_min
+  firstVariantId = Object.keys(product.variants.data)[0]
   section.catalog-single
     .container
       .row
         // Product Gallery
         .col-lg-6.col-md-6
           #prod-gal.prod-gal.master-slider
-            // Slide1
-            .ms-slide
-              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
-              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
-            // Slide2
-            .ms-slide
-              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
-              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
-            // Slide3
-            .ms-slide
-              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
-              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
-            // Slide4
-            .ms-slide
-              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
-              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
-            // Slide5
-            .ms-slide
-              img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/catalog/product-gallery/1.jpg', alt='Lorem ipsum')
-              img.ms-thumb(src='/themes/basic/img/catalog/product-gallery/th_1.jpg', alt='thumb')
+            if product && product.images && product.images.length>0
+              each image in product.images
+                .ms-slide
+                  img(src=url,alt=product.name, data-src=S3url+image.files.s400.path)
+                  img.ms-thumb(alt=product.name, src=S3url+image.files.s200.path)
         // Product Description
         .col-lg-6.col-md-6
-          h1 Minaudière
-          .old-price 815,00 $
-          .price 715,00 $
+          h1 #{product.name}
+          .row
+            if product.variants.stock_max > 0
+              form.form-horizontal(role='form')
+                input(type="hidden", name="product[id]", value=product._id)
+                input(type="hidden", name="product[variant_id]", value=firstVariantId)
+
+                if product.variants.options && product.variants.options.length
+                    script.
+                      var variants_data = !{JSON.stringify(product.variants.data)}
+                    each v in product.variants.options
+                      .col-lg-12.col-md-12
+                        .form-group.row
+                          label.col-sm-4.control-label #{v.name}:
+                          .col-sm-8
+                            select.form-control(name="product[variants]["+v.slug+"]", data-variant=v.slug)
+                              each key_variant in v.list
+                                option(value=key_variant) #{key_variant}
+          if isSale
+            .old-price #{__displayPrice(shop.currency, product.variants.regular_price_min)}
+          .price #{__displayPrice(shop.currency, product.variants.price_min)}
           .buttons.group
+            dispo = product.variants.stock_max>0 ? true : false
             .qnt-count
               a.incr-btn(href='#') -
-              input#quantity.form-control(type='text', value='2')
+              input#quantity.form-control(type='text', value="1")
               a.incr-btn(href='#') +
-            a#addItemToCart.btn.btn-primary.btn-sm(href='#')
+            a#addItemToCart.btn.btn-primary.btn-sm(href='#' disabled=!dispo)
               i.icon-shopping-cart
-              | Add to cart
-            a.btn.btn-black.btn-sm(href='#')
+              if dispo
+                | Add to cart
+              else
+                | Out of Stock
+            //a.btn.btn-black.btn-sm(href='#')
               i.icon-heart
               | Add to wishlist
-          p.p-style2
-            | Product page was developed with the help of consultants with great and successful experience in e-commerce. It's all you need to effectively demonstrate your product. The opportunity to quickly buy a product or save it to a wishlist will definitely increase the conversion rate.
+          p.p-style2 #{product.description}
           .row
             .col-lg-4.col-md-4.col-sm-5
               h3 Tell friends

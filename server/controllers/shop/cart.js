@@ -13,7 +13,7 @@ module.exports = {
 
   getCart: function (req, res) {
     var shop = req.session.shop;
-    var page = fn.shopViewsPath(shop.theme, 'cart');
+    var page = fn.shopViewsPath(shop.theme, 'shopping-cart');
 
     res.render(page, {
       shop: req.session.shop,

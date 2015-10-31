@@ -96,25 +96,17 @@ html
                 li
                   a(href='/category/kitesurfing') Kitesurfing
                 li
-                  a(href='/category/stand-up-padde-board') Stand Up Padde Board
+                  a(href='/category/stand-up-paddle-board') Stand Up Padde Board
                 li
-                  a(href='shopping-cart.html') Shopping Cart
+                  a(href='/shopping-cart') Shopping Cart
                 li
-                  a(href='checkout.html') Checkout Page
+                  a(href='/checkout') Checkout
                 //li
                   a(href='wishlist.html') Wishlist
-            li.has-submenu
-              a(href='blog-sidebar-right.html')
+            li
+              a(href='/blog')
                 span N
                 | ews
-                i.fa.fa-chevron-down
-              ul.submenu
-                li
-                  a(href='blog-sidebar-left.html') News - Sidebar Left
-                li
-                  a(href='blog-sidebar-right.html') News - Sidebar Right
-                li
-                  a(href='blog-single.html') News - Single Post
             li.has-submenu
               a(href='#')
                 span M
@@ -122,7 +114,7 @@ html
                 i.fa.fa-chevron-down
               ul.submenu
                 li
-                  a(href='support.html') Contacts Us
+                  a(href='/contact') Contacts Us
                 li
                   a(href='about.html') About Us
                 li
@@ -137,26 +129,26 @@ html
                   | Kitesurfing
                   i.fa.fa-chevron-down
                 ul.submenu
+                  li.has-submenu
+                    a(href='/category/kitesurfing') Shop
+                    // Class "has-submenu" for adding carret and dropdown
+                    ul.sub-submenu
+                      li
+                        a(href='/category/packages') Packs
+                      li
+                        a(href='/category/kites') Kites
+                      li
+                        a(href='/category/kite-boards') Kite Boards
+                      li
+                        a(href='/category/surfkites') Surfkites
+                      li
+                        a(href='/category/kitesurfing') All
                   li
                     a(href='#') Lessons
                   li
                     a(href='#') Rental
                   li
                     a(href='#') Vouchers
-                  li.has-submenu
-                    a(href='#') Shop
-                    // Class "has-submenu" for adding carret and dropdown
-                    ul.sub-submenu
-                      li
-                        a(href='#') Packs
-                      li
-                        a(href='#') Kites
-                      li
-                        a(href='#') Boards
-                      li
-                        a(href='#') Specials
-                      li
-                        a(href='#') Others
                   li.offer
                     .col-1
                       p.p-style2
@@ -171,6 +163,16 @@ html
                   | Stand Up Paddle Board
                   i.fa.fa-chevron-down
                 ul.submenu
+                  li.has-submenu
+                    a(href='/category/stand-up-paddle-board') Shop
+                    // Class "has-submenu" for adding carret and dropdown
+                    ul.sub-submenu
+                      li
+                        a(href='/category/stand-up-paddle-board') Boards
+                      li
+                        a(href='#/category/stand-up-paddle-board') Paddles
+                      li
+                        a(href='/category/stand-up-paddle-board') All
                   li
                     a(href='#') Lessons
                   li
@@ -179,20 +181,29 @@ html
                     a(href='#') Yoga & Fitness
                   li
                     a(href='#') Vouchers
-                  li.has-submenu
-                    a(href='#') Shop
-                    // Class "has-submenu" for adding carret and dropdown
-                    ul.sub-submenu
-                      li
-                        a(href='#') Packs
-                      li
-                        a(href='#') Boards
-                      li
-                        a(href='#') Paddles
-                      li
-                        a(href='#') Specials
-                      li
-                        a(href='#') Others
+                  li.offer
+                    .col-1
+                      p.p-style2
+                        | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
+                    .col-2
+                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      a.btn.btn-black(href='#')
+                        span 2 584$
+                        | Beginner Park, Special offer
+
+              li.has-submenu
+                a(href='')
+                  | Lessons
+                  i.fa.fa-chevron-down
+                ul.submenu
+                  li
+                    a(href='/kitesurfing-lessons-perth') Kitesurfing
+                  li
+                    a(href='/stand-up-paddle-lessons') Stand Up Paddle Board
+                  li
+                    a(href='/lessons/team') Team
+                  li
+                    a(href='#') Gallery
                   li.offer
                     .col-1
                       p.p-style2

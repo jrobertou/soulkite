@@ -8,9 +8,33 @@ module.exports = {
 	// Get contact page
 	getContact: function(req, res) {
 		// Render contact page
-		res.render('shop/themes/'+req.session.shop.theme+'/contact', {
+		res.render('shop/themes/basic/contact', {
 			name: config.shop.name,
 			title: 'À Propos',
+			customer: req.session.customer,
+			cart: req.session.cart,
+			shop: req.session.shop
+		});
+	},
+
+	// Get team page
+	getTeam: function(req, res) {
+		// Render contact page
+		res.render('shop/themes/basic/team', {
+			name: config.shop.name,
+			title: 'Teachers',
+			customer: req.session.customer,
+			cart: req.session.cart,
+			shop: req.session.shop
+		});
+	},
+
+	// Get Blog page
+	getBlog: function(req, res) {
+		// Render contact page
+		res.render('shop/themes/basic/blog', {
+			name: config.shop.name,
+			title: 'Teachers',
 			customer: req.session.customer,
 			cart: req.session.cart,
 			shop: req.session.shop

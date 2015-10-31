@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .container.space-top
+    h2 Contacts
+  // Google Map
+  section.map.container
+    iframe(src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11365119.183662498!2d26.671722792891288!3d45.93754926598604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1403521777633', width='800', height='400', style='border:0')
+  // Google Map Close
+  // Contacts
+  section.container
+    .row
+      // Contact Info
+      .col-lg-5.col-lg-offset-1.col-md-5.col-sm-5
+        h3 Contact info
+        .cont-info-widget
+          ul
+            li
+              i.fa.fa-building
+              | 4120 Lenox Avenue, New York,
+              br
+              | 10035 76 Saint Nicholas Avenue
+            li
+              a(href='#')
+                i.fa.fa-envelope
+                | mail@Limo.com
+            li
+              a(href='#')
+                i.fa.fa-support
+                | support@Limo.com
+            li
+              i.fa.fa-phone
+              | +48 543765234
+            li
+              i.fa.fa-mobile
+              | +48 555 234 54 34
+      .col-lg-5.col-md-7.col-sm-7
+        h3 Drop us a line
+        form.contact-form(method='post')
+          .form-group
+            label.sr-only(for='cf-name') Name
+            input#cf-name.form-control(type='text', name='cf-name', placeholder='Enter your name', required='')
+          .form-group
+            label.sr-only(for='cf-email') Email
+            input#cf-email.form-control(type='email', name='cf-email', placeholder='Enter email', required='')
+          .form-group
+            label.sr-only(for='cf-message') Message
+            textarea#cf-message.form-control(name='cf-message', rows='5', placeholder='Your message', required='')
+          input.btn.btn-primary(type='submit', value='Send message')
+  // Contacts Close

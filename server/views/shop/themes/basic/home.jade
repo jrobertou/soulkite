@@ -12,9 +12,9 @@ block content
         p.dark-color.ms-layer(style='width: 456px; left: 110px; top: 210px;', data-effect='back(500)', data-duration='700', data-delay='500', data-ease='easeOutQuad')
           | In this slider (which works both on touch screen and desktop devices) you can change the title, the description and button texts. It's all that you need to demonstrate your top rated products.
         .ms-layer.button(style='left: 110px; top: 300px;', data-effect='left(50,true)', data-duration='500', data-delay='750', data-ease='easeOutQuad')
-          a.btn.btn-black(href='#') Go to catalog
+          a.btn.btn-black(href='/category/kitesurfing') Go to catalog
         .ms-layer.button(style='left: 350px; top: 300px;', data-effect='bottom(50,true)', data-duration='700', data-delay='950', data-ease='easeOutQuad')
-          a.btn.btn-primary(href='#') Get some lessons
+          a.btn.btn-primary(href='/lesson/kitesurfing') Get some lessons
       // Slide 2
       .ms-slide(data-delay='7')
         span.overlay
@@ -23,21 +23,10 @@ block content
         p.dark-color.ms-layer(style='width: 456px; left: 110px; top: 210px;', data-effect='bottom(50,true)', data-duration='700', data-delay='500', data-ease='easeOutQuad')
           | In this slider (which works both on touch screen and desktop devices) you can change the title, the description and button texts. It's all that you need to demonstrate your top rated products.
         .ms-layer.button(style='left: 110px; top: 330px;', data-effect='left(50,true)', data-duration='500', data-delay='750', data-ease='easeOutQuad')
-          a.btn.btn-black(href='#') Go to catalog
+          a.btn.btn-black(href='/category/kitesurfing') Go to catalog
         .ms-layer.button(style='left: 350px; top: 330px;', data-effect='bottom(50,true)', data-duration='700', data-delay='950', data-ease='easeOutQuad')
-          a.btn.btn-primary(href='#') Browse all
+          a.btn.btn-primary(href='/lesson/kitesurfing') Get some lessons
       // Slide 3
-        .ms-slide(data-delay='7')
-          span.overlay
-          img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/hero/slideshow/Stand-up-paddle-board-hire-Perth.jpg', alt='Necessaire')
-          h2.dark-color.ms-layer(style='width: 456px; left: 110px; top: 110px;', data-effect='bottom(50,true)', data-duration='700', data-delay='250', data-ease='easeOutQuad') Necessaire
-          p.dark-color.ms-layer(style='width: 456px; left: 110px; top: 210px;', data-effect='bottom(50,true)', data-duration='700', data-delay='500', data-ease='easeOutQuad')
-            | In this slider (which works both on touch screen and desktop devices) you can change the title, the description and button texts. It's all that you need to demonstrate your top rated products.
-          .ms-layer.button(style='left: 110px; top: 330px;', data-effect='left(50,true)', data-duration='500', data-delay='750', data-ease='easeOutQuad')
-            a.btn.btn-black(href='#') Go to catalog
-          .ms-layer.button(style='left: 350px; top: 330px;', data-effect='bottom(50,true)', data-duration='700', data-delay='950', data-ease='easeOutQuad')
-            a.btn.btn-primary(href='#') Browse all
-      // Slide 4
       .ms-slide(data-delay='7')
         .overlay
         img(src='/themes/basic/masterslider/blank.gif', data-src='/themes/basic/img/hero/slideshow/kitesurfing-fone-wave-perth.jpg', alt='Crescent')
@@ -45,12 +34,33 @@ block content
         p.dark-color.ms-layer(style='width: 456px; left: 110px; top: 210px;', data-effect='left(50,true)', data-duration='700', data-delay='500', data-ease='easeOutQuad')
           | In this slider (which works both on touch screen and desktop devices) you can change the title, the description and button texts. It's all that you need to demonstrate your top rated products.
         .ms-layer.button(style='left: 110px; top: 330px;', data-effect='left(50,true)', data-duration='500', data-delay='750', data-ease='easeOutQuad')
-          a.btn.btn-black(href='#') Go to catalog
+          a.btn.btn-black(href='/category/kitesurfing') Go to catalog
         .ms-layer.button(style='left: 350px; top: 330px;', data-effect='bottom(50,true)', data-duration='700', data-delay='950', data-ease='easeOutQuad')
-          a.btn.btn-primary(href='#') Browse all
+          a.btn.btn-primary(href='/lesson/kitesurfing') Get some lessons
   // Hero Slider Close
   // Catalog Grid
-  section.catalog-grid
+  section.lesson-grid
+    .container.space-top.space-bottom
+      h2.dark-color.space-bottom Kitesurfing & Stand Up Paddle Lessons
+      .row
+        .col-lg-4.col-md-4.text-center
+          i.fa.fa-users.fa-5x
+          h3 Semi-Private Teaching
+          p With a maximum of two person per your Iko professional teacher, we want to see you progress fastly and safely.
+        .col-lg-4.col-md-4.text-center
+          i.fa.fa-pie-chart.fa-5x
+          h3 Great Success Percentage
+          p With many years of experience, we have a great percentage of success because we know how to scalable for each people.
+        .col-lg-4.col-md-4.text-center
+          i.fa.fa-usd.fa-5x
+          h3 Best Price Near By
+          p We offer the best price you can find in Perth area. The teacher's quality and your safety have to be for everyone.
+      .row.space-top
+        .col-lg-12.col-md-12.text-center
+          a.btn.btn-primary(href='/lesson/kitesurfing') Book Now
+          a.btn.btn-primary(href='/lesson/kitesurfing') See More
+
+  section.catalog-grid.gray-bg
     .container
       h2.dark-color Catalog picks
       .row

@@ -16446,5 +16446,11 @@ footer.footer a:hover {
   color: #71a436;
 }
 
-
-
+.ellipsis-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.img-heigth200 {
+  max-height: 200px!important;
+}

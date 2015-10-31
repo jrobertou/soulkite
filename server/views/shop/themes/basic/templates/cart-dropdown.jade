@@ -18,6 +18,27 @@
           th Items
           th Quantity
           th Price
+        tr.item
+          td
+            .delete
+            a(href='#') Good Joo-Joo Surfb
+          td
+            input(type='text', value='1')
+          td.price 89 005 $
+        tr.item
+          td
+            .delete
+            a(href='#') Good Joo-Joo Item
+          td
+            input(type='text', value='2')
+          td.price 4 300 $
+        tr.item
+          td
+            .delete
+            a(href='#') Good Joo-Joo
+          td
+            input(type='text', value='5')
+          td.price 84 $
         if cart
           each product, key in cart.products
             link = "/product/"+product.slug

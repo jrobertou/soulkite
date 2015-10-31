@@ -1,0 +1,119 @@
+extends layout
+
+block content
+  // Blog Sidebar Right
+  section.blog.space-top
+    .container
+      .row
+        // Left Column
+        .col-lg-9.col-md-9
+          h2.title Blog posts
+          // Post
+          .post
+            h3.title
+              a(href='blog-single.html') New awesome theme from 8Guild team
+            .row
+              .col-lg-3.col-md-3
+                img(src='/themes/basic/img/blog/blog_03.png', alt='Blog post')
+              .col-lg-9.col-md-9
+                p.p-style3
+                  | Limo is the product which was born thanks to the involvement not only of the UI experts but also great marketers who have tremendous experience in outstanding implementations of e-commerce projects from different domains...
+            footer
+              a.btn.btn-primary(href='blog-single.html') Read more
+              .share
+                a(href='#')
+                  i.fa.fa-twitter
+                a(href='#')
+                  i.fa.fa-facebook-square
+                a(href='#')
+                  i.fa.fa-pinterest-square
+                a(href='#')
+                  i.fa.fa-envelope
+              ul.meta
+                li
+                  i.fa.fa-user
+                  a(href='#') By Resoursa
+                li
+                  i.fa.fa-calendar
+                  a(href='#') 12.02.2014
+                li
+                  i.fa.fa-comment
+                  a(href='#') Comments (34)
+          // Post
+          .post
+            h3.title
+              a(href='blog-single.html') Beautiful and clickable post title
+            .row
+              .col-lg-3.col-md-3
+                img(src='/themes/basic/img/blog/blog_03.png', alt='Blog post')
+              .col-lg-9.col-md-9
+                p.p-style3
+                  | Limo Theme is quite universal and covers a lot of use cases for either big e-commerce website or smaller ones. Due to 5 different landing pages you can easily guide a client whether directly to a specific product or to a category page. The Product Showcase Home page is a full featured landing page for effective product or service promotion...
+            footer
+              a.btn.btn-primary(href='blog-single.html') Read more
+              .share
+                a(href='#')
+                  i.fa.fa-twitter
+                a(href='#')
+                  i.fa.fa-facebook-square
+                a(href='#')
+                  i.fa.fa-pinterest-square
+                a(href='#')
+                  i.fa.fa-envelope
+              ul.meta
+                li
+                  i.fa.fa-user
+                  a(href='#') By Resoursa
+                li
+                  i.fa.fa-calendar
+                  a(href='#') 28.05.2014
+                li
+                  i.fa.fa-comment
+                  a(href='#') Comments (25)
+        // Sidebar
+        .col-lg-3.col-md-3
+          // Search Widget
+          h3 Search the blog
+          form.sidebar-search
+            input.form-control(type='text', name='search-blog', placeholder='Search')
+            button(type='submit')
+          // Tags
+          h3 Tags
+          .tags
+            a(href='#') Limo
+            | ,
+            a(href='#') theme
+            | ,
+            a(href='#') HTML5
+            | ,
+            a(href='#') premium
+            | ,
+            a(href='#') shopping
+            | ,
+            a(href='#') e-commerce
+          // Latest posts
+          h3 Latest posts
+          .latest-posts
+            .post
+              a(href='blog-single.html') New awesome theme out there...
+              .meta
+                a(href='#')
+                  | Comments
+                  span (34)
+                span.date 12.02.2014
+            .post
+              a(href='blog-single.html') Lorem ipsum dolor sit amet...
+              .meta
+                a(href='#')
+                  | Comments
+                  span (22)
+                span.date 12.02.2014
+            .post
+              a(href='blog-single.html') Anim pariatur cliche reprehenderit...
+              .meta
+                a(href='#')
+                  | Comments
+                  span (81)
+                span.date 12.02.2014
+  // Blog Sidebar Right Close
+
