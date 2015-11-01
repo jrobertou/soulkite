@@ -14,6 +14,30 @@ module.exports = {
 	 */
 	shopCommonTasks: function(req, res, next) {
 
+
+		req.session.shop = {
+		  "_id" : "54c663e0d0fa2022d77323f1",
+		  "name" : "Soulkite",
+		  "url" : "soulekite",
+		  "theme" : "basic",
+		  "paypal_email" : "jeremy.robertou@paypal.com",
+		  "contact_email" : "jeremy.robertou@gmail.com",
+		  "id_owner" : "54c663e0d0fa2022d77323f0",
+		  "custom_settings" : {
+		      "map_showing" : "true",
+		      "company_promotion" : "Notre expertise CRM est reconnue comme l'une des plus poussée sur le marché français, avec des partenaires de renoms comme SugarCRM, et SageCRM Solutions (nous sommes certifiés SageCRM et Saleslogix).",
+		      "company_phone_number" : "+33 5 56 54 34 54",
+		      "company_details" : "SARL le porge & fils",
+		      "company_address" : null,
+		      "banner_showing" : "true"
+		  },
+		  "validated" : false,
+		  "validation_code" : "F3cka1InZz6Dmuty",
+		  "currency" : "USD",
+		  "language" : "fr",
+		  "date" : "2015-01-26T15:57:20.685Z",
+		  "__v" : 0
+		};
 		if (req.session.shop && req.session.shop.categories) {
       i18n.setLocale(req, req.session.shop.language);
       return next();
