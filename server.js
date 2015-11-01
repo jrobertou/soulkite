@@ -44,7 +44,7 @@ switch (env) {
   case 'development':
     app.locals.pretty = true;
     app.locals.S3url = config.S3.url;
-    GLOBAL.siteurl = 'myshop.com';
+    GLOBAL.siteurl = 'soulkite.herokuapp.com';
     db_connection_config = config.connection;
     db_connection_config = 'mongodb://localhost:27017/myshop';
     //db_connection_config = 'mongodb://dbdev:dbpasswd@ds037451.mongolab.com:37451/myshop';
@@ -58,8 +58,8 @@ switch (env) {
 
   case 'production':
     app.locals.S3url = config.S3.url;
-    GLOBAL.siteurl = 'moneboutique.com';
-    db_connection_config = '';
+    GLOBAL.siteurl = 'soulkite.herokuapp.com';
+    db_connection_config = 'mongodb://jeremy:hubertt@ds037451.mongolab.com:37451/myshop';
     break;
 
   default:
@@ -79,7 +79,7 @@ console.log('Connecting to database...');
   // Set up jade
 app.set('views', __dirname + '/server/views');
 app.set('view engine', 'jade');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8081);
 
 // Define public assets
 app.use(express.static(__dirname + '/public'));
