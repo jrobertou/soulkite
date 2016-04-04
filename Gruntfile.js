@@ -91,29 +91,27 @@ module.exports = function(grunt) {
           '<%= meta.adminCss %>/admin.css'
         ],
         dest: '<%= meta.adminCss %>/admin.css'
-      }/*,
-      js_admin: {
+      },
+      js_buildbasic: {
         src: [
-          '<%= meta.js %>/libs/jquery-1.10.2.min.js',
-          '<%= meta.js %>/libs/jquery-ui-1.10.3.custom.min.js',
-          '<%= meta.js %>/libs/highcharts.js',
-          '<%= meta.js %>/libs/modernizr.custom.min.js',
-          '<%= meta.js %>/libs/jquery.pjax.js',
-          '<%= meta.js %>/custom/helper-actions.js',
-          '<%= meta.js %>/custom/helper-forms.js',
-          '<%= meta.adminJS %>/dropzone.js',
-          '<%= meta.adminJS %>/admin.js',
-          '<%= meta.adminJS %>/category.js',
-          '<%= meta.adminJS %>/product.js',
-          '<%= meta.js %>/custom/pjax.js',
-          '<%= meta.js %>/libs/foundation.min.js',
-          '<%= meta.js %>/libs/foundation.reveal.js',
-          '<%= meta.js %>/libs/foundation.tooltip.js',
-          '<%= meta.js %>/libs/foundation.dropdown.js',
-          '<%= meta.js %>/custom/states-choices.js',
+          'public/themes/basic/js/libs/jquery-1.11.1.min.js',
+          'public/themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js',
+          'public/themes/basic/js/libs/jquery.easing.min.js',
+          'public/themes/basic/js/plugins/bootstrap.min.js',
+          'public/themes/basic/js/plugins/smoothscroll.js',
+          'public/themes/basic/js/plugins/jquery.validate.min.js',
+          'public/themes/basic/js/plugins/icheck.min.js',
+          'public/themes/basic/js/plugins/jquery.placeholder.js',
+          'public/themes/basic/js/plugins/jquery.stellar.min.js',
+          'public/themes/basic/js/plugins/jquery.touchSwipe.min.js',
+          'public/themes/basic/js/plugins/jquery.shuffle.min.js',
+          'public/themes/basic/js/plugins/lightGallery.min.js',
+          'public/themes/basic/js/plugins/owl.carousel.min.js',
+          'public/themes/basic/js/plugins/masterslider.min.js',
+          'public/themes/basic/js/scripts.js'
         ],
-        dest: '<%= meta.adminJS %>/admin.min.js'
-      }*/
+        dest: 'public/themes/basic/js/buildbasic.min.js'
+      }    
     },
 
     cssmin: {
@@ -216,7 +214,7 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['watch']);
   //grunt.registerTask('build', ['sass:build', 'sass:build4theme', 'concat', 'cssmin']);
 
-  grunt.registerTask('limo', ['less']);
+  grunt.registerTask('limo', ['less', 'concat:js_buildbasic']);
 
   // CSS
   grunt.registerTask('build_css_website', ['sass:website', 'concat:website', 'cssmin:website']);

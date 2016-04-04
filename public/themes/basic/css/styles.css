@@ -11808,7 +11808,7 @@ header .search-form .close-search:hover {
 @media only screen and (max-width: 1200px) {
   .menu .main,
   .menu .catalog {
-    max-width: 620px;
+    max-width: 570px;
   }
 }
 .menu .main li,
