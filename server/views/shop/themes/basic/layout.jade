@@ -72,13 +72,14 @@ html
             input#search-hd.form-control(type='text', name='search-hd', placeholder='Search for product')
             button(type='submit')
               i.icon-magnifier
-      // Mobile Menu Toggle
-      .menu-toggle
-        i.fa.fa-list
+      
       .container
         h1.logo SoulKite
         //a.logo(href='index.html')
           img(src='/themes/basic/img/logo-scheme4.png', alt='Limo')
+      // Mobile Menu Toggle
+      .menu-toggle
+        i.fa.fa-list
       // Main Menu
       nav.menu
         .container
@@ -310,7 +311,7 @@ html
     // Footer
     footer.footer
       .container
-        .row
+        .row.p-style3
           .col-lg-5.col-md-5.col-sm-5
             .info
               h2 KiteSoul Australia
@@ -320,7 +321,7 @@ html
                 | SoulKite is a kitesurfing school based in Fremantle near Perth, Western Australia.
                 br
                 | We offer kitesurfing and stand up paddeling lessons near Perth for beginner, intermediate and advanced riders.
-              .social
+              .social.margin-top
                 a(href='#', target='_blank')
                   i.fa.fa-instagram
                 a(href='#', target='_blank')
@@ -337,14 +338,17 @@ html
             h2 Latest news
             ul.list-unstyled
               li
-                | 25 of May&nbsp;
-                a(href='#') Review, Best Cabo 2016
+                a(href='#')
+                  | 25 of May -&nbsp;
+                  span.smaller Review, Best Cabo 2016
               li
-                | 24 of April&nbsp;
-                a(href='#') Review, Fone Bandit 2016
+                a(href='#') 
+                  | 24 of April -&nbsp;
+                  span.smaller Review, Fone Bandit 2016
               li
-                | 25 of May&nbsp;
-                a(href='#') Freestyle's tips
+                a(href='#') 
+                  | 25 of April -&nbsp;
+                  span.smaller Freestyle's tips
           .contacts.col-lg-3.col-md-3.col-sm-3
             h2 Contacts
             p.p-style3
