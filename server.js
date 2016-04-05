@@ -46,7 +46,7 @@ switch (env) {
     app.locals.S3url = config.S3.url;
     GLOBAL.siteurl = 'soulkite.herokuapp.com';
     db_connection_config = config.connection;
-    db_connection_config = 'mongodb://localhost:27017/myshop';
+    db_connection_config = 'mongodb://jeremy:hubertt@ds037451.mongolab.com:37451/myshop';//'mongodb://localhost:27017/myshop';
     //db_connection_config = 'mongodb://dbdev:dbpasswd@ds037451.mongolab.com:37451/myshop';
     break;
 

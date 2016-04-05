@@ -8,17 +8,58 @@ var dbCategory = require('../../data/category')
 module.exports = {
 
   // Show a category from url request
-  getMain: function(req, res) {
+  getMainBySEO: function(req, res) {
 
-    var page = fn.shopViewsPath(req.session.shop.theme, 'category');;
-    // Render product view
-    res.render(page, {
-      shop: req.session.shop,
-      title: 'Kitesurfing',
-      customer: req.session.customer,
-      cart: req.session.cart,
-      config: config
+    var shop = req.session.shop;
+
+    // Fing requested product
+    dbCategory.findCategoryBySEO(shop._id, req.params.seo, function(err, category) {
+
+      // Catch product not found
+      if (err) {
+
+        var page = fn.shopViewsPath(shop.theme, '404');
+        res.render(page, {
+          shop: req.session.shop,
+          title: err.message,
+          customer: req.session.customer,
+          cart: req.session.cart
+        });
+
+      }
+      else {
+
+        dbCategory.getCategoriesByParent(shop._id, category._id, function(err, categories) {
+
+          // Catch product not found
+          if (err) {
+
+            var page = fn.shopViewsPath(shop.theme, '404');
+            res.render(page, {
+              shop: req.session.shop,
+              title: err.message,
+              customer: req.session.customer,
+              cart: req.session.cart
+            });
+
+          }
+          else {
+
+            res.render(fn.shopViewsPath(shop.theme, 'category'), {
+              shop: req.session.shop,
+              title: category.name,
+              customer: req.session.customer,
+              cart: req.session.cart,
+              config: config,
+              category: category, 
+              categories: categories
+            });
+          }
+        });
+      }
     });
+
+
   },
 
 	// Show a category from url request
@@ -28,7 +69,7 @@ module.exports = {
     var shop = req.session.shop;
 
     // Fing requested product
-    dbCategory.findCategoryBySEO(req.session.shop._id, req.params.seo, function(err, category) {
+    dbCategory.findCategoryBySEO(req.session.shop._id, req.params.seosub, function(err, category) {
 
       // Catch product not found
       if (err) {
@@ -47,7 +88,7 @@ module.exports = {
         // Page
         var page = typeof req.params.page == 'undefined' ? 1 : req.params.page;
         var nb_per_page = 9;
-        var current_url = '/category/'+req.params.seo+'/'+req.params.seo2+'/';
+        var current_url = '/category/'+req.params.seo+'/'+req.params.seosub+'/';
 
         dbProduct.getProductsByCatInPage(shop._id, category._id, nb_per_page, page, function(err, products, products_pages) { //console.log(JSON.stringify(images));
 

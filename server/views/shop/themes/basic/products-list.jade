@@ -1,40 +1,23 @@
 extends layout
 
 block content
-  // Breadcrumbs
-  ol.breadcrumb
-    li
-      a(href='index.html') Home
-    li
-      a(href='/category/kitesurfing') Kitesurfing
-    li
-      a(href='/category/kitesurfing/Packages') Packages
   // Breadcrumbs Close
   // Catalog Grid
   section.catalog-grid
     .container
-      h2.with-sorting Kitesurfing Packages
-      .sorting
-        a(href='#') Sort by name
-        a(href='#') Sort by price
+      h2.with-sorting #{category.name}
+      // Breadcrumbs
+      ol.breadcrumb
+        li
+          a(href='index.html') Home
+        li
+          a(href='/category/kitesurfing') Kitesurfing
+        li
+          a(href='/category/kitesurfing/Packages') Packages
       .row
         // Filters
         .filters-mobile.col-lg-3.col-md-3.col-sm-4
           .shop-filters
-            // Price Section
-            section.filter-section
-              h3 Filter by price
-              form(method='get', name='price-filters')
-                .price-slider
-                  #price-range
-                  .values.group
-                    // data-min-val represent minimal price and data-max-val maximum price respectively in pricing slider range; value="" - default values
-                    input#minVal.form-control(name='minVal', type='text', data-min-val='10', value='180')
-                    span.labels $ -
-                    input#maxVal.form-control(name='maxVal', type='text', data-max-val='2500', value='1400')
-                    span.labels $
-                  input.btn.btn-primary.btn-sm(type='submit', value='Filter')
-            
             section.filter-section
               h3 Categories
               ul.categories

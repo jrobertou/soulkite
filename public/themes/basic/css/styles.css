@@ -9704,7 +9704,7 @@ html {
 }
 @media only screen and (max-width: 1200px) {
   .page-content {
-    padding-top: 75px;
+    padding-top: 115px;
   }
 }
 .gray-bg {
@@ -11808,7 +11808,7 @@ header .search-form .close-search:hover {
 @media only screen and (max-width: 1200px) {
   .menu .main,
   .menu .catalog {
-    max-width: 570px;
+    max-width: 620px;
   }
 }
 .menu .main li,
@@ -16471,4 +16471,19 @@ li.offer div.col-2 .btn-black:hover {
 }
 .img-heigth200 {
   max-height: 200px!important;
+}
+.catalog-grid .container ol.breadcrumb {
+  padding-top: 0px;
+  text-align: left;
+  font-size: 0.75em;
+}
+h2,
+.h2 {
+  font-size: 2em;
+}
+.menu .catalog li .submenu .sub-submenu li a {
+  color: #fff!important;
+}
+.menu .catalog li .submenu .sub-submenu li a:hover {
+  color: #8bc34a!important;
 }

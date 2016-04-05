@@ -18,7 +18,7 @@ isSale = product.variants.regular_price_min != product.variants.price_min
     if isSale
       .sticker.sticker-sale
 
-form.col-lg-3.col-md-4.col-sm-6(data-type="classic-form", method="post", action="/cart/add")
+form.col-lg-4.col-md-4.col-sm-6(data-type="classic-form", method="post", action="/cart/add")
   .tile
     .badges
       if isSale

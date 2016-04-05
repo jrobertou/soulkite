@@ -37,11 +37,11 @@ module.exports = function(app) {
 	app.get('/blog', main.shopCommonTasks, contact.getBlog);
 
 	// Category
-	app.get('/category/:seo', main.shopCommonTasks, category.getMain);
+	app.get('/category/:seo', main.shopCommonTasks, category.getMainBySEO);
 
 	// Sub-Category
-	app.get('/category/:seo/:seo2', main.shopCommonTasks, category.getBySEO);
-	app.get('/category/:seo/:seo2/:page', main.shopCommonTasks, category.getBySEO);
+	app.get('/category/:seo/:seosub', main.shopCommonTasks, category.getBySEO);
+	app.get('/category/:seo/:seosub/:page', main.shopCommonTasks, category.getBySEO);
 
 	// Product
 	app.get('/product/:seo', main.shopCommonTasks, product.getBySEO);
