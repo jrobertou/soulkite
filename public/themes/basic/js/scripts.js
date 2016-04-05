@@ -282,7 +282,7 @@ $(document).ready(function(e) {
 		heroSlider.control('bullets');
 		heroSlider.setup('hero-slider' , {
 				width:1140,
-				height:455,
+				height:591,
 				space:0,
 				speed: 18,
 				autoplay: true,
@@ -302,7 +302,7 @@ $(document).ready(function(e) {
 		fullscreenSlider.control('bullets');
 		fullscreenSlider.setup('fullscreen-slider' , {
 				width:1140,
-				height:455,
+				height:591,
 				space:0,
 				view:'basic',
 				layout:'fullscreen',
