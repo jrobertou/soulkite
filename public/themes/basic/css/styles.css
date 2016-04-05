@@ -16460,6 +16460,9 @@ li.offer div.col-2 .btn-black:hover {
 .feature-tabs .tab.active i {
   color: #71a436;
 }
+.img-product-background {
+  background-color: #fff;
+}
 
 .ellipsis-text {
   white-space: nowrap;

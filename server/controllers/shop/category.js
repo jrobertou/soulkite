@@ -7,6 +7,20 @@ var dbCategory = require('../../data/category')
 // Export functions
 module.exports = {
 
+  // Show a category from url request
+  getMain: function(req, res) {
+
+    var page = fn.shopViewsPath(req.session.shop.theme, 'category');;
+    // Render product view
+    res.render(page, {
+      shop: req.session.shop,
+      title: 'Kitesurfing',
+      customer: req.session.customer,
+      cart: req.session.cart,
+      config: config
+    });
+  },
+
 	// Show a category from url request
   getBySEO: function(req, res) {
 
@@ -33,7 +47,7 @@ module.exports = {
         // Page
         var page = typeof req.params.page == 'undefined' ? 1 : req.params.page;
         var nb_per_page = 9;
-        var current_url = '/category/'+req.params.seo+'/';
+        var current_url = '/category/'+req.params.seo+'/'+req.params.seo2+'/';
 
         dbProduct.getProductsByCatInPage(shop._id, category._id, nb_per_page, page, function(err, products, products_pages) { //console.log(JSON.stringify(images));
 

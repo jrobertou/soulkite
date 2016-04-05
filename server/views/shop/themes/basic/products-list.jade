@@ -5,12 +5,15 @@ block content
   ol.breadcrumb
     li
       a(href='index.html') Home
-    li Shop - filters left 3 cols
+    li
+      a(href='/category/kitesurfing') Kitesurfing
+    li
+      a(href='/category/kitesurfing/Packages') Packages
   // Breadcrumbs Close
   // Catalog Grid
   section.catalog-grid
     .container
-      h2.with-sorting Filters left 3 columns
+      h2.with-sorting Kitesurfing Packages
       .sorting
         a(href='#') Sort by name
         a(href='#') Sort by price
@@ -22,15 +25,6 @@ block content
             section.filter-section
               h3 Filter by price
               form(method='get', name='price-filters')
-                span#clearPrice.clear Clear price
-                .price-btns
-                  button.btn.btn-black.btn-sm(value='below 50$') below 50$
-                  br
-                  button.btn.btn-black.btn-sm.disabled(value='50$-100$') from 50$ to 100$
-                  br
-                  button.btn.btn-black.btn-sm(value='100$-300$') from 100$ to 300$
-                  br
-                  button.btn.btn-black.btn-sm(value='300$-1000$') from 300$ to 1000$
                 .price-slider
                   #price-range
                   .values.group
@@ -40,85 +34,22 @@ block content
                     input#maxVal.form-control(name='maxVal', type='text', data-max-val='2500', value='1400')
                     span.labels $
                   input.btn.btn-primary.btn-sm(type='submit', value='Filter')
-            // Colors Section
-            section.filter-section
-              h3 Filter by color
-              span.clear.clearChecks Clear colors
-              label
-                input#color_0(type='checkbox', name='colors', value='black', checked='')
-                |                     Black (12)
-              br
-              label
-                input#color_1(type='checkbox', name='colors', value='white')
-                |                     White (1)
-              br
-              label
-                input#color_2(type='checkbox', name='colors', value='green')
-                |                     Green  (34)
-              br
-              label
-                input#color_3(type='checkbox', name='colors', value='blue')
-                |                     Blue (23)
-              br
-              label
-                input#color_4(type='checkbox', name='colors', value='red')
-                |                     Red (12)
-            // Colors Section
-            section.filter-section
-              h3 Filter by size
-              span.clear.clearChecks Clear size
-              label
-                input#size_0(type='checkbox', name='sizes', value='small', checked='')
-                |                     Small (12)
-              br
-              label
-                input#size_1(type='checkbox', name='sizes', value='white')
-                |                     Medium (34)
-              br
-              label
-                input#size_2(type='checkbox', name='sizes', value='green')
-                |                     Large (11)
-              br
-              label
-                input#size_3(type='checkbox', name='sizes', value='blue')
-                |                     Extra large (1)
-              br
-              label
-                input#size_4(type='checkbox', name='sizes', value='red')
-                |                     Superman (0)
-            // Categories Section
+            
             section.filter-section
               h3 Categories
               ul.categories
-                li.has-subcategory
-                  a(href='#') Backpacks (123)
-                  // Class "has-subcategory" for dropdown propper work
-                  ul.subcategory
-                    li
-                      a(href='#') Backpacks (1)
-                    li
-                      a(href='#') Shoulder Bag (45)
-                    li
-                      a(href='#') Handbag (34)
-                    li
-                      a(href='#') Something (12)
-                    li
-                      a(href='#') Wallet (23)
                 li
-                  a(href='#') Belts (34)
+                  a(href='#') Packages (1)
                 li
-                  a(href='#') Gloves (78)
-                li.has-subcategory
-                  a(href='#') Something (45)
-                  ul.subcategory
-                    li
-                      a(href='#') Subcategory (1)
-                    li
-                      a(href='#') Subcategory (45)
-                    li
-                      a(href='#') Subcategory (23)
+                  a(href='#') Kites (45)
                 li
-                  a(href='#') Hat bag (23)
+                  a(href='#') Kites Boards (34)
+                li
+                  a(href='#') Surfkites (12)
+                li
+                    a(href='#') Kites Harnesses (23)
+                li
+                    a(href='#') Accessories (23)
         // Tiles
         .col-lg-9.col-md-9.col-sm-8
           .row
