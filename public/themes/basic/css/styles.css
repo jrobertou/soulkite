@@ -9696,6 +9696,41 @@ button.close {
 [disabled] .noUi-handle {
   cursor: not-allowed;
 }
+.sprite {
+  background-image: url(https://s3-eu-west-1.amazonaws.com/myshop-img/static/spritesheet.png);
+  background-repeat: no-repeat;
+  display: block;
+}
+.sprite.sprite-best {
+  background-position: -5px -5px;
+  width: 180px;
+  height: 76px;
+}
+.sprite.sprite-fone {
+  background-position: -5px -91px;
+  width: 190px;
+  height: 72px;
+}
+.sprite.sprite-honu {
+  background-position: -5px -173px;
+  width: 180px;
+  height: 63px;
+}
+.sprite.sprite-manera {
+  background-position: -5px -246px;
+  width: 180px;
+  height: 76px;
+}
+.sprite.sprite-mystic {
+  background-position: -5px -332px;
+  width: 190px;
+  height: 70px;
+}
+.sprite.sprite-xenon {
+  background-position: -5px -412px;
+  width: 190px;
+  height: 76px;
+}
 html {
   font-size: 100%;
 }
@@ -10490,13 +10525,13 @@ header .logo {
   display: block;
   position: absolute;
   width: 100%;
-  max-width: 146px;
-  top: 16px;
+  max-width: 250px;
+  top: 2px;
   left: 27px;
   z-index: 3;
 }
 header .logo img {
-  width: 80px;
+  width: 100%;
 }
 @media only screen and (max-width: 991px) {
   header .logo {
@@ -12511,7 +12546,8 @@ header .search-form .close-search:hover {
 .footer .payment {
   text-align: right;
 }
-.footer .payment img {
+.footer .payment img,
+.footer .payment span {
   display: inline-block;
   width: 40px;
   margin-left: 6px;
@@ -12616,7 +12652,7 @@ header .search-form .close-search:hover {
   position: absolute;
   padding: 11px 10px 11px 12px;
   height: 47px;
-  background: #ff9016;
+  background: #b2b2b2;
   top: 0;
   right: 0;
   z-index: 12;
