@@ -25,6 +25,17 @@ module.exports = function(app) {
 	 * Shop Routes
 	 */
 
+
+	app.get('/*', function (req, res, next) {
+
+	  if (req.url.indexOf(".jpg") === 0 || req.url.indexOf(".png") === 0 || req.url.indexOf(".jpeg") === 0 || req.url.indexOf(".gif") === 0) {
+	    res.setHeader("Cache-Control", "public, max-age=2592000");
+	    res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+	  }
+	  next();
+	});
+
+
 	// Main routes
 	app.get('/', main.shopCommonTasks, main.getHome);
 	//app.get('/:page', main.shopCommonTasks, main.getHome);
