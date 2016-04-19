@@ -1,0 +1,34 @@
+.stitches-sprite(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.sprite {
+    background-image: url(https://s3-eu-west-1.amazonaws.com/myshop-img/static/spritesheet.png);    background-repeat: no-repeat;
+    display: block;
+
+    &.sprite-best {
+        .stitches-sprite(-5px, -5px, 180px, 76px);
+    }
+
+    &.sprite-fone {
+        .stitches-sprite(-5px, -91px, 190px, 72px);
+    }
+
+    &.sprite-honu {
+        .stitches-sprite(-5px, -173px, 180px, 63px);
+    }
+
+    &.sprite-manera {
+        .stitches-sprite(-5px, -246px, 180px, 76px);
+    }
+
+    &.sprite-mystic {
+        .stitches-sprite(-5px, -332px, 190px, 70px);
+    }
+
+    &.sprite-xenon {
+        .stitches-sprite(-5px, -412px, 190px, 76px);
+    }
+}
