@@ -110,7 +110,7 @@ module.exports = function(grunt) {
           'public/themes/basic/js/plugins/masterslider.min.js',
           'public/themes/basic/js/scripts.js'
         ],
-        dest: 'public/themes/basic/js/buildbasic.min.js'
+        dest: 'public/themes/basic/js/buildbasic.js'
       }    
     },
 
@@ -135,6 +135,14 @@ module.exports = function(grunt) {
         src: ['admin.css'],
         dest: '<%= meta.adminCss %>/',
         ext: '.min.css'
+      },
+      limo: {
+        options: {
+         banner: '/*! Soulkite 1.0.0 */'
+        },
+        files: {
+         'public/themes/basic/css/styles.min.css': ['public/themes/basic/css/styles.css']
+        }
       }
     },
 
@@ -172,6 +180,11 @@ module.exports = function(grunt) {
             '<%= meta.themesPath %>/_marciano/js/marciano.js'
           ]
         }
+      },
+      limo: {
+        files: {
+          'public/themes/basic/js/buildbasic.min.js': ['public/themes/basic/js/buildbasic.js']
+        }
       }
     },
 
@@ -197,6 +210,11 @@ module.exports = function(grunt) {
         files: ['<%= meta.themesPath %>/common/js/*.js', '<%= meta.themesPath %>/_marciano/js/*.js', '!<%= meta.themesPath %>/**/*.min.js'],
         tasks: ['build_js_marciano']
       }
+      ,
+      build_limo: {
+        files: ['public/themes/basic/css/*.scss', 'public/themes/basic/css/**/*.scss', 'public/themes/basic/js/*.js', 'public/themes/basic/js/**/*.js'],
+        tasks: ['limo_dev']
+      }
     }
 
   });
@@ -214,7 +232,8 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['watch']);
   //grunt.registerTask('build', ['sass:build', 'sass:build4theme', 'concat', 'cssmin']);
 
-  grunt.registerTask('limo', ['less', 'concat:js_buildbasic']);
+  grunt.registerTask('limo', ['less', 'concat:js_buildbasic', 'uglify:limo', 'cssmin:limo']);
+  grunt.registerTask('limo_dev', ['less', 'concat:js_buildbasic']);
 
   // CSS
   grunt.registerTask('build_css_website', ['sass:website', 'concat:website', 'cssmin:website']);

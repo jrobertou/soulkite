@@ -12,15 +12,11 @@ html
     // Favicon
     link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
     link(rel='icon', href='favicon.ico', type='image/x-icon')
-    // Master Slider Styles
-    link(href='/themes/basic/masterslider/style/masterslider.min.css', rel='stylesheet', media='screen')
     // Styles
-    link(href='/themes/basic/css/styles.min.css', rel='stylesheet', media='screen')
-    // Modernizr
-    script(src='/themes/basic/js/libs/modernizr.custom.js')
-    // Adding Media Queries Support for IE8
-    //if lt IE 9
-      script(src='/themes/basic/js/plugins/respond.js')
+    if env == 'development'
+      link(href='/themes/basic/css/styles.css', async rel='stylesheet', media='screen')
+    else
+      link(href='/themes/basic/css/styles.min.css', async rel='stylesheet', media='screen')
   // Body
   body
     // Login Modal
@@ -76,7 +72,7 @@ html
       .container
         //-h1.logo SoulKite
         a.logo(href='/')
-          img(src='/themes/basic/img/soulkite-perth-logo.png', alt='soulkite australia')
+          img(src='/themes/basic/img/used/soulkite-perth-logo.png', alt='soulkite australia')
       // Mobile Menu Toggle
       .menu-toggle
         i.fa.fa-list
@@ -155,7 +151,7 @@ html
                       p.p-style2
                         | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
                     .col-2
-                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      img(src='/themes/basic/img/used/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
                       a.btn.btn-black(href='#')
                         span 2 584$
                         | Beginner Park, Special offer
@@ -189,7 +185,7 @@ html
                       p.p-style2
                         | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
                     .col-2
-                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      img(src='/themes/basic/img/used/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
                       a.btn.btn-black(href='#')
                         span 2 584$
                         | Beginner Park, Special offer
@@ -212,7 +208,7 @@ html
                       p.p-style2
                         | All you need to know about kitesurfing and stand up paddling lesson, rental, shop and more in Perth area.
                     .col-2
-                      img(src='/themes/basic/img/offers/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
+                      img(src='/themes/basic/img/used/bandit-8-trax-fibre-verre-f-one-2015.png', alt='Fone PACK Special Offer')
                       a.btn.btn-black(href='#')
                         span 2 584$
                         | Beginner Park, Special offer
@@ -374,21 +370,31 @@ html
                 span.sprite.sprite-discover
                 span.sprite.sprite-amazon
     // Footer Close
+
     // Javascript (jQuery) Libraries and Plugins
-    script(src='/themes/basic/js/buildbasic.min.js')
-    //- script(src='/themes/basic/js/libs/jquery-1.11.1.min.js')
-    //- script(src='/themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js')
-    //- script(src='/themes/basic/js/libs/jquery.easing.min.js')
-    //- script(src='/themes/basic/js/plugins/bootstrap.min.js')
-    //- script(src='/themes/basic/js/plugins/smoothscroll.js')
-    //- script(src='/themes/basic/js/plugins/jquery.validate.min.js')
-    //- script(src='/themes/basic/js/plugins/icheck.min.js')
-    //- script(src='/themes/basic/js/plugins/jquery.placeholder.js')
-    //- script(src='/themes/basic/js/plugins/jquery.stellar.min.js')
-    //- script(src='/themes/basic/js/plugins/jquery.touchSwipe.min.js')
-    //- script(src='/themes/basic/js/plugins/jquery.shuffle.min.js')
-    //- script(src='/themes/basic/js/plugins/lightGallery.min.js')
-    //- script(src='/themes/basic/js/plugins/owl.carousel.min.js')
-    //- script(src='/themes/basic/js/plugins/masterslider.min.js')
-    //- script(src='/themes/basic/js/scripts.js')
+
+    // Modernizr
+    script(src='/themes/basic/js/libs/modernizr.custom.js')
+    // Adding Media Queries Support for IE8
+    //if lt IE 9
+      script(async src='/themes/basic/js/plugins/respond.js')
+    if env == 'development'
+      script(src='/themes/basic/js/libs/jquery-1.11.1.min.js')
+      script(src='/themes/basic/js/libs/jquery-ui-1.10.4.custom.min.js')
+      script(src='/themes/basic/js/libs/jquery.easing.min.js')
+      script(src='/themes/basic/js/plugins/bootstrap.min.js')
+      script(src='/themes/basic/js/plugins/smoothscroll.js')
+      script(src='/themes/basic/js/plugins/jquery.validate.min.js')
+      script(src='/themes/basic/js/plugins/icheck.min.js')
+      script(src='/themes/basic/js/plugins/jquery.placeholder.js')
+      script(src='/themes/basic/js/plugins/jquery.stellar.min.js')
+      script(src='/themes/basic/js/plugins/jquery.touchSwipe.min.js')
+      script(src='/themes/basic/js/plugins/jquery.shuffle.min.js')
+      script(src='/themes/basic/js/plugins/lightGallery.min.js')
+      script(src='/themes/basic/js/plugins/owl.carousel.min.js')
+      script(src='/themes/basic/js/plugins/masterslider.min.js')
+      script(src='/themes/basic/js/scripts.js')
+    else
+      script(src='/themes/basic/js/buildbasic.min.js')
+    
   // Body Close
